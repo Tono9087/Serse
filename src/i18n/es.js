@@ -55,7 +55,7 @@ export const es = {
   contactStripHeading: "¿Necesitas cotizar suministros MRO?",
   contactStripSub: "Atención directa para compras y mantenimiento industrial.",
   callPhone: "Llamar al {phone}",
-  clientsHeading: "Empresas que confían en nosotrosnosotros",
+  clientsHeading: "Empresas que confían en nosotros",
 
   // Catalog & Filters
   catalogTitle: "Catálogo industrial MRO",
@@ -106,11 +106,15 @@ export const es = {
 
   // Brands Page
   brandsPageTitle: "Marcas",
+  brandsPageHeading: "Marcas que manejamos",
+  brandsPageSub: "Trabajamos con fabricantes líderes en la industria para garantizar calidad, confiabilidad y desempeño en cada solución MRO.",
   brandsSubtitle: "Marcas disponibles en el catálogo",
   brandsPageIntro: "Consulta los productos disponibles por fabricante dentro de nuestro catálogo MRO.",
   unspecifiedBrandNotice: "{n} productos sin marca especificada",
   viewBrandProducts: "Ver productos",
   viewAll: "Ver todas",
+  lookingForAnotherBrand: "¿Buscas otra marca?",
+  viewTheCatalog: "Ver el catálogo",
 
   // About Page
   aboutPageTitle: "Sobre nosotros",

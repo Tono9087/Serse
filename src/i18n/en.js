@@ -106,11 +106,15 @@ export const en = {
 
   // Brands Page
   brandsPageTitle: "Brands",
+  brandsPageHeading: "Brands we carry",
+  brandsPageSub: "We work with leading industry manufacturers to guarantee quality, reliability, and performance in every MRO solution.",
   brandsSubtitle: "Brands available in the catalog",
   brandsPageIntro: "Browse available products by manufacturer in our MRO catalog.",
   unspecifiedBrandNotice: "{n} products without a specified brand",
   viewBrandProducts: "View products",
   viewAll: "View all",
+  lookingForAnotherBrand: "Looking for another brand?",
+  viewTheCatalog: "Browse the catalog",
 
   // About Page
   aboutPageTitle: "About Us",

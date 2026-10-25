@@ -3,6 +3,8 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { ArrowRight, MessageSquare, PackageSearch, RotateCcw } from "lucide-react";
 import catalog from "../data/catalog.json";
 import { SITE } from "../config/site.js";
+import { BRANDS } from "../config/brands.js";
+import { getBrandProductCount } from "../lib/brands.js";
 import { applyFilters, facetCounts } from "../lib/filters.js";
 import { paginate } from "../lib/pagination.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
@@ -74,20 +76,14 @@ export function Catalog() {
       };
     }, []);
 
-  // Top 12 brands for the landing strip
-  const top12Brands = useMemo(() => {
-    const counts = new Map();
-    for (const item of catalog) {
-      if (!item.brand) continue;
-      counts.set(item.brand, (counts.get(item.brand) || 0) + 1);
-    }
-    return Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => {
-        if (b.count !== a.count) return b.count - a.count;
-        return a.name.localeCompare(b.name, "es");
-      })
-      .slice(0, 12);
+  // Curated brands with products in catalog
+  const catalogBrands = useMemo(() => {
+    return BRANDS.filter((b) => b.enabled !== false)
+      .map((brand) => ({
+        brand,
+        count: getBrandProductCount(brand, catalog),
+      }))
+      .filter((item) => item.count > 0);
   }, []);
 
   // Parse and validate URL search params
@@ -178,7 +174,8 @@ export function Catalog() {
     return paginate(filteredProducts, pageParam, size);
   }, [filteredProducts, pageParam, size]);
 
-  const showBrandStrip = !q && !cat && !sub && brands.length === 0;
+  const showBrandStrip =
+    !q && !cat && !sub && brands.length === 0 && catalogBrands.length > 0;
 
   // Helper to update URL params cleanly
   function updateParams(updates, { resetPage = true } = {}) {
@@ -331,11 +328,11 @@ export function Catalog() {
               </div>
 
               <div className="flex gap-3 overflow-x-auto pb-2 snap-x md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:pb-0 xl:grid-cols-6">
-                {top12Brands.map((brand) => (
+                {catalogBrands.map(({ brand, count }) => (
                   <BrandCard
-                    key={brand.name}
-                    brand={brand.name}
-                    count={brand.count}
+                    key={brand.slug}
+                    brand={brand}
+                    count={count}
                     className="w-40 shrink-0 snap-start md:w-auto md:shrink"
                   />
                 ))}

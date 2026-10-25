@@ -1,7 +1,11 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageSquare } from "lucide-react";
 import catalog from "../data/catalog.json";
+import { BRANDS } from "../config/brands.js";
+import { SITE } from "../config/site.js";
+import { getBrandProductCount } from "../lib/brands.js";
+import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { Container } from "../components/layout/Container.jsx";
@@ -15,70 +19,64 @@ export function Brands() {
     description: t("metaBrandsDesc"),
   });
 
-  const { brands, unspecifiedCount } = useMemo(() => {
-    const counts = new Map();
-    let nullCount = 0;
-
-    for (const item of catalog) {
-      if (item.brand) {
-        counts.set(item.brand, (counts.get(item.brand) || 0) + 1);
-      } else {
-        nullCount += 1;
-      }
-    }
-
-    const sortedBrands = Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => {
-        if (b.count !== a.count) return b.count - a.count;
-        return a.name.localeCompare(b.name, "es");
-      });
-
-    return { brands: sortedBrands, unspecifiedCount: nullCount };
+  // Filter out disabled brands and compute product counts from catalog
+  const brandList = useMemo(() => {
+    return BRANDS.filter((b) => b.enabled !== false).map((brand) => ({
+      brand,
+      count: getBrandProductCount(brand, catalog),
+    }));
   }, []);
 
+  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+
   return (
-    <div>
-      {/* Header band */}
-      <section className="bg-gradient-to-b from-brand-800 to-brand-700 py-12 text-center text-white sm:py-16">
-        <Container>
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            {t("brandsPageTitle")}
-          </h1>
-          <p className="mt-2 text-base text-white/90 sm:text-lg">
-            {t("brandsSubtitle")}
+    <div className="bg-white py-16 md:py-24">
+      <Container>
+        {/* Header */}
+        <div className="text-center">
+          <h2 className="text-3xl font-semibold tracking-tight text-brand-900 md:text-4xl">
+            {t("brandsPageHeading")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted sm:text-lg leading-relaxed">
+            {t("brandsPageSub")}
           </p>
-        </Container>
-      </section>
+        </div>
 
-      {/* Brands Grid Section */}
-      <section className="bg-lavender py-10 sm:py-14">
-        <Container>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 2xl:grid-cols-5">
-            {brands.map((brand) => (
-              <BrandCard
-                key={brand.name}
-                brand={brand.name}
-                count={brand.count}
-              />
-            ))}
-          </div>
+        {/* Logo Grid: 2 cols (<sm), 3 (sm), 4 (lg), 5 (xl and up) */}
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 xl:grid-cols-5">
+          {brandList.map(({ brand, count }) => (
+            <BrandCard key={brand.slug} brand={brand} count={count} />
+          ))}
+        </div>
 
-          {unspecifiedCount > 0 && (
-            <div className="mt-8 rounded-xl border border-line bg-white p-4 text-sm text-brand-900 shadow-xs">
-              <Link
-                to="/catalogo"
-                className="inline-flex items-center gap-2 rounded font-medium text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+        {/* Section Footer */}
+        <div className="mt-16 text-center sm:mt-20">
+          <p className="text-lg font-semibold text-brand-900">
+            {t("lookingForAnotherBrand")}
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/catalogo"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-900 transition duration-150 hover:bg-lavender hover:border-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+            >
+              <span>{t("viewTheCatalog")}</span>
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+
+            {SITE.whatsappNumber && (
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-brand-700 px-6 py-2.5 text-sm font-semibold text-white transition duration-150 hover:bg-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
               >
-                <span>
-                  {t("unspecifiedBrandNotice", { n: unspecifiedCount })}
-                </span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-          )}
-        </Container>
-      </section>
+                <MessageSquare className="h-4 w-4" aria-hidden="true" />
+                <span>{t("quoteViaWhatsApp")}</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

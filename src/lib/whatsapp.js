@@ -111,3 +111,17 @@ export function buildGenericGreetingUrl(number = SITE.whatsappNumber) {
     "Hola, quisiera solicitar una cotización."
   );
 }
+
+/**
+ * Builds a wa.me URL with pre-filled greeting text for a specific brand.
+ * Text: "Hola, quisiera cotizar productos de la marca {brandName}."
+ * @param {string} brandName
+ * @param {string} [number]
+ * @returns {string}
+ */
+export function buildBrandGreetingUrl(brandName, number = SITE.whatsappNumber) {
+  return buildWhatsAppUrl(
+    number,
+    `Hola, quisiera cotizar productos de la marca ${brandName}.`
+  );
+}
