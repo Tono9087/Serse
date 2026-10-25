@@ -1,0 +1,934 @@
+[
+  {
+    "id": "p001",
+    "name": "Mandril chuck para taladro 3/8 (3/32-3/8)",
+    "brand": null,
+    "np": "07150-03005",
+    "category": "Herramienta",
+    "subcategory": "Herramienta manual",
+    "image": null,
+    "sourceImage": "https://gruposerse.com/images/0/26168402/mandril-de-3-8-para-taladro-y-percutor-incluye-llave-truper-bro-3-8n-Q_62zx8O2y56uG3fokSmMg.jpg"
+  },
+  {
+    "id": "p002",
+    "name": "Puntas hexagonales para desarmador",
+    "brand": "TRUPER EXPERT",
+    "np": "12653",
+    "category": "Herramienta",
+    "subcategory": "Herramienta manual",
+    "image": null,
+    "sourceImage": "https://gruposerse.com/images/0/26168590/estuche-con-5-puntas-hexagonales-de-1-4mm-largo-2-expertpude-7225-7e2-9wPicpycys8vgo4UWTwpKQ.jpg"
+  },
+  {
+    "id": "p003",
+    "name": "Insertos magnéticos para dados",
+    "brand": "LANG TOOLS",
+    "np": "521",
+    "category": "Herramienta",
+    "subcategory": "Herramienta manual",
+    "image": null,
+    "sourceImage": "https://gruposerse.com/images/0/26168622/JB-LNG-521__63001-b7aftFq35cLBeYO5qKbDrA.jpg"
+  },
+  {
+    "id": "p004",
+    "name": "Cilindro antigiro",
+    "brand": "SMC",
+    "np": "CDG1KBN25-75",
+    "category": "Neumática",
+    "subcategory": "Cilindros",
+    "image": null,
+    "sourceImage": "https://gruposerse.com/images/0/26168846/brave_screenshot_www.smcpneumatics.com-w46yQyJ6PeJfBaNcRcJ2Ow.png",
+    "reviewFlags": [
+      "imageNotSuitable"
+    ]
+  },
+  {
+    "id": "p005",
+    "name": "Válvula solenoide 5 vías",
+    "brand": "SMC",
+    "np": "VFS3100-5FZ",
+    "category": "Neumática",
+    "subcategory": "Válvulas",
+    "image": null,
+    "sourceImage": "https://gruposerse.com/images/0/26169042/ChatGPTImage9jun202612_22_12p.m.-cWHISEO0t-4Xi-PYyfqzlA.png",
+    "reviewFlags": [
+      "imageNotSuitable"
+    ]
+  },
+  {
+    "id": "p006",
+    "name": "Cilindro neumático",
+    "brand": "YPC",
+    "np": "YC2B25-150S",
+    "category": "Neumática",
+    "subcategory": "Cilindros",
+    "image": null,
+    "sourceImage": "https://gruposerse.com/images/0/26189356/61EE2874-410C-4C39-B3AA-F3BAB5E0728D-cIL6ms2nLYJ_clURBI6pmA.PNG"
+  },
+  {
+    "id": "p007",
+    "name": "Cilindro neumático compacto",
+    "brand": "SMC",
+    "np": "CDJPB15-30D",
+    "category": "Neumática",
+    "subcategory": "Cilindros",
+    "image": null
+  },
+  {
+    "id": "p008",
+    "name": "Cilindro neumático compacto",
+    "brand": "SMC",
+    "np": "CDJ2B16-30-B",
+    "category": "Neumática",
+    "subcategory": "Cilindros",
+    "image": null
+  },
+  {
+    "id": "p009",
+    "name": "Regulador de flujo (Speed Controller)",
+    "brand": "SMC",
+    "np": "AS1201F-M5-04",
+    "category": "Neumática",
+    "subcategory": "Reguladores y silenciadores",
+    "image": null
+  },
+  {
+    "id": "p010",
+    "name": "Unidad de mantenimiento FRL",
+    "brand": "SMC",
+    "np": "AC20A-N02CG-Z",
+    "category": "Neumática",
+    "subcategory": "Preparación de aire",
+    "image": null
+  },
+  {
+    "id": "p011",
+    "name": "Válvula solenoide neumática",
+    "brand": "NASS Magnet / SYPC",
+    "np": "SIV411-1P/SYBA1-5Z",
+    "category": "Neumática",
+    "subcategory": "Válvulas",
+    "image": null
+  },
+  {
+    "id": "p012",
+    "name": "Válvula de pie neumática",
+    "brand": "YPC",
+    "np": "SFVM250-08L",
+    "category": "Neumática",
+    "subcategory": "Válvulas",
+    "image": null
+  },
+  {
+    "id": "p013",
+    "name": "Separador de drenaje",
+    "brand": null,
+    "np": "SAMG 350",
+    "category": "Neumática",
+    "subcategory": "Preparación de aire",
+    "image": null
+  },
+  {
+    "id": "p014",
+    "name": "Válvula / regulador",
+    "brand": null,
+    "np": "STC3000",
+    "category": "Neumática",
+    "subcategory": "Válvulas",
+    "image": null,
+    "reviewFlags": [
+      "vagueName"
+    ]
+  },
+  {
+    "id": "p015",
+    "name": "Conector rápido recto",
+    "brand": "SPC",
+    "np": "PUC12",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p016",
+    "name": "Conector tipo T",
+    "brand": "SPC",
+    "np": "PT 3/8-N03U",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p017",
+    "name": "Conector rápido recto 1/2",
+    "brand": null,
+    "np": "PUC1/2",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p018",
+    "name": "Conector / fitting neumático",
+    "brand": "Ingersoll Rand",
+    "np": "FE22E3C/TRH-99",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p019",
+    "name": "Silenciador neumático (Bronce)",
+    "brand": null,
+    "np": "STB1000",
+    "category": "Neumática",
+    "subcategory": "Reguladores y silenciadores",
+    "image": null
+  },
+  {
+    "id": "p020",
+    "name": "Conector neumático recto",
+    "brand": "YPC",
+    "np": "PC08-03",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p021",
+    "name": "Conector rápido recto",
+    "brand": null,
+    "np": "PUC 10",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p022",
+    "name": "Conector rápido tipo unión",
+    "brand": null,
+    "np": "PUT04",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p023",
+    "name": "Conector rápido 3/8",
+    "brand": null,
+    "np": "PUC 3/8",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p024",
+    "name": "Conector neumático recto macho (Push In)",
+    "brand": null,
+    "np": "PC3/8-01",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p025",
+    "name": "Conector neumático recto macho (Push In)",
+    "brand": null,
+    "np": "PC10-04",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p026",
+    "name": "Conector neumático recto macho mini (Push In)",
+    "brand": null,
+    "np": "PC06-MS",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p027",
+    "name": "Silenciador neumático (Plástico)",
+    "brand": null,
+    "np": null,
+    "category": "Neumática",
+    "subcategory": "Reguladores y silenciadores",
+    "image": null
+  },
+  {
+    "id": "p028",
+    "name": "Regulador de flujo neumático tipo Push In",
+    "brand": null,
+    "np": null,
+    "category": "Neumática",
+    "subcategory": "Reguladores y silenciadores",
+    "image": null
+  },
+  {
+    "id": "p029",
+    "name": "Conector neumático 3/8",
+    "brand": null,
+    "np": "PC3/8-N02",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p030",
+    "name": "Tapón / Conector 3/8",
+    "brand": null,
+    "np": "PP 3/8-N03U",
+    "category": "Neumática",
+    "subcategory": "Conectores y fittings",
+    "image": null
+  },
+  {
+    "id": "p031",
+    "name": "Bobina para válvula solenoide",
+    "brand": "Sanlixin",
+    "np": "D17-16I02A",
+    "category": "Neumática",
+    "subcategory": "Válvulas",
+    "image": null
+  },
+  {
+    "id": "p032",
+    "name": "AIR GUN 02 SP",
+    "brand": "SANG-A",
+    "np": null,
+    "category": "Neumática",
+    "subcategory": "Accesorios",
+    "image": null,
+    "npListed": "1 EA",
+    "reviewFlags": [
+      "unitAsNp"
+    ]
+  },
+  {
+    "id": "p033",
+    "name": "Caja organizadora transparente",
+    "brand": "El Galeón",
+    "np": "ORZ005",
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Almacenamiento",
+    "image": null
+  },
+  {
+    "id": "p034",
+    "name": "Bolsa porta herramientas",
+    "brand": null,
+    "np": "GS013-A / C04-|3-02",
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Almacenamiento",
+    "image": null,
+    "reviewFlags": [
+      "npFormatOdd"
+    ]
+  },
+  {
+    "id": "p035",
+    "name": "Tira de espuma adhesiva",
+    "brand": null,
+    "np": null,
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Refacciones y varios",
+    "image": null
+  },
+  {
+    "id": "p036",
+    "name": "Módulo de entrada analógica LOGO",
+    "brand": "Siemens",
+    "np": "6ED1-055-1MD00-0BA0",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Automatización",
+    "image": null
+  },
+  {
+    "id": "p037",
+    "name": "Módulo de entrada analógica LOGO (AQ)",
+    "brand": "Siemens",
+    "np": "6ED1-055-1MM00-0BA0",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Automatización",
+    "image": null
+  },
+  {
+    "id": "p038",
+    "name": "Marcadores tipo manga",
+    "brand": "Brady",
+    "np": "PSPT-187-1Y",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p039",
+    "name": "Relé de protección trifásica 220-440VAC",
+    "brand": "Kalin",
+    "np": "TG30s",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null
+  },
+  {
+    "id": "p040",
+    "name": "Fusible de vidrio 5x20 mm 8A",
+    "brand": "YR",
+    "np": "BGDP-8A",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null
+  },
+  {
+    "id": "p041",
+    "name": "Luz indicadora LED roja 24V",
+    "brand": "CNMOM",
+    "np": "AD16-22DS",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null
+  },
+  {
+    "id": "p042",
+    "name": "Conector circular eléctrico",
+    "brand": "Corsair Electrical Connectors",
+    "np": "MS3450L20-15S",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null
+  },
+  {
+    "id": "p043",
+    "name": "Placa de pared single gang 2 puertos",
+    "brand": "3M",
+    "np": "XE-0042-607-5",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null
+  },
+  {
+    "id": "p044",
+    "name": "Terminal eléctrica",
+    "brand": null,
+    "np": "IY1315107",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null,
+    "reviewFlags": [
+      "vagueName"
+    ]
+  },
+  {
+    "id": "p045",
+    "name": "Botón pulsador rojo",
+    "brand": "Siemens",
+    "np": "3SB1201-0AC01",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Componentes eléctricos",
+    "image": null
+  },
+  {
+    "id": "p046",
+    "name": "Módulo PCB protector de batería Li-ion",
+    "brand": null,
+    "np": "H17-04",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Fuentes, baterías y módulos",
+    "image": null
+  },
+  {
+    "id": "p047",
+    "name": "Sensor de flujo (Flow Switch)",
+    "brand": "SMC",
+    "np": "PF2A750-N02-67",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Sensores y detección",
+    "image": null
+  },
+  {
+    "id": "p048",
+    "name": "Sensor switch sólido PNP",
+    "brand": "PHD",
+    "np": "67923-1",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Sensores y detección",
+    "image": null
+  },
+  {
+    "id": "p049",
+    "name": "Sensor con cable (Quick Connect)",
+    "brand": "PHD",
+    "np": "67929-1",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Sensores y detección",
+    "image": null
+  },
+  {
+    "id": "p050",
+    "name": "Sensor magnético tipo reed",
+    "brand": null,
+    "np": null,
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Sensores y detección",
+    "image": null
+  },
+  {
+    "id": "p051",
+    "name": "Interruptor de límite",
+    "brand": "Pizzato",
+    "np": "FD 684",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Sensores y detección",
+    "image": null,
+    "reviewFlags": [
+      "mergedDuplicate"
+    ]
+  },
+  {
+    "id": "p052",
+    "name": "Cartucho de etiquetas B-439 Vinil Blanco",
+    "brand": "Brady",
+    "np": "81020",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p053",
+    "name": "Cartucho etiquetador 1/2 vinil",
+    "brand": "Brady IDPAL",
+    "np": "PAL-500-439",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p054",
+    "name": "Ribbon cartucho monocromo azul",
+    "brand": "Brady",
+    "np": "76745",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p055",
+    "name": "Etiqueta térmica en rollo",
+    "brand": null,
+    "np": null,
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p056",
+    "name": "Rollo de etiquetas blancas térmicas",
+    "brand": null,
+    "np": null,
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p057",
+    "name": "Etiquetas térmicas tipo marcador",
+    "brand": "Brady",
+    "np": "THT-40-457-10",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p058",
+    "name": "Etiqueta textil para identificación",
+    "brand": "Brady",
+    "np": "NAED 49330",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p059",
+    "name": "Etiquetas industriales para impresión térmica",
+    "brand": "Brady",
+    "np": "THT-7-438-3",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Etiquetas y cartuchos",
+    "image": null
+  },
+  {
+    "id": "p060",
+    "name": "Lupa de medición",
+    "brand": "Mitutoyo",
+    "np": "183-304",
+    "category": "Medición",
+    "subcategory": "Instrumentos",
+    "image": null
+  },
+  {
+    "id": "p061",
+    "name": "Fuente de alimentación industrial",
+    "brand": "Mean Well",
+    "np": "RS-25-5",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Fuentes, baterías y módulos",
+    "image": null
+  },
+  {
+    "id": "p062",
+    "name": "Kit para lubricación automática",
+    "brand": "Automation Components Inc.",
+    "np": "131922",
+    "category": "Mecánica y lubricación",
+    "subcategory": "Lubricación",
+    "image": null
+  },
+  {
+    "id": "p063",
+    "name": "Grasa sintética industrial Mobil SHC 460",
+    "brand": "Mobil",
+    "np": "SHC460",
+    "category": "Mecánica y lubricación",
+    "subcategory": "Lubricación",
+    "image": null
+  },
+  {
+    "id": "p064",
+    "name": "Kit de muestreo industrial",
+    "brand": "AGREG",
+    "np": null,
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Refacciones y varios",
+    "image": null
+  },
+  {
+    "id": "p065",
+    "name": "Galga para medir tornillos y pernos",
+    "brand": "Grainger",
+    "np": "2EE44",
+    "category": "Medición",
+    "subcategory": "Instrumentos",
+    "image": null
+  },
+  {
+    "id": "p066",
+    "name": "Regla metálica de precisión",
+    "brand": "SHINWA",
+    "np": null,
+    "category": "Medición",
+    "subcategory": "Instrumentos",
+    "image": null
+  },
+  {
+    "id": "p067",
+    "name": "Manómetro de presión 0-150 PSI",
+    "brand": "SMC",
+    "np": null,
+    "category": "Medición",
+    "subcategory": "Manómetros",
+    "image": null
+  },
+  {
+    "id": "p068",
+    "name": "Manómetro medidor de presión gas",
+    "brand": "Nitron",
+    "np": "51331PU28-A1",
+    "category": "Medición",
+    "subcategory": "Manómetros",
+    "image": null
+  },
+  {
+    "id": "p069",
+    "name": "Rodamiento de bolas industriales",
+    "brand": "OMEGA TECHNOLOGIES",
+    "np": null,
+    "category": "Mecánica y lubricación",
+    "subcategory": "Rodamientos y sujeción",
+    "image": null,
+    "npListed": "521",
+    "reviewFlags": [
+      "npSharedWithOtherProduct",
+      "brandUnverified"
+    ]
+  },
+  {
+    "id": "p070",
+    "name": "Spring Plunger CTS Luer Connect",
+    "brand": "Molex",
+    "np": "63819-0975",
+    "category": "Mecánica y lubricación",
+    "subcategory": "Rodamientos y sujeción",
+    "image": null
+  },
+  {
+    "id": "p071",
+    "name": "Filtro / componente industrial",
+    "brand": "LDI Industries",
+    "np": "F155",
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Filtración",
+    "image": null,
+    "reviewFlags": [
+      "vagueName"
+    ]
+  },
+  {
+    "id": "p072",
+    "name": "Dispensador automático aerosol",
+    "brand": "Wiese",
+    "np": "NDIDC03",
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Limpieza",
+    "image": null
+  },
+  {
+    "id": "p073",
+    "name": "Lámpara LED portátil",
+    "brand": "Creative Lighting",
+    "np": null,
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Iluminación",
+    "image": null
+  },
+  {
+    "id": "p074",
+    "name": "Pieza plástica redonda tipo tapa",
+    "brand": null,
+    "np": "01-1010-55",
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Refacciones y varios",
+    "image": null,
+    "reviewFlags": [
+      "vagueName"
+    ]
+  },
+  {
+    "id": "p075",
+    "name": "Pila Botón Litio CR2025",
+    "brand": "Energizer",
+    "np": null,
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Fuentes, baterías y módulos",
+    "image": null,
+    "npListed": "2032 BP5/CR2032",
+    "reviewFlags": [
+      "npMismatch"
+    ]
+  },
+  {
+    "id": "p076",
+    "name": "Pila botón alcalina 1.5V AG10",
+    "brand": "TIANQIU",
+    "np": "LR1130H/AG10",
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Fuentes, baterías y módulos",
+    "image": null
+  },
+  {
+    "id": "p077",
+    "name": "Pilas alcalinas tamaño AAA",
+    "brand": "Energizer",
+    "np": null,
+    "category": "Eléctrico y electrónica",
+    "subcategory": "Fuentes, baterías y módulos",
+    "image": null,
+    "npListed": "AAAA",
+    "reviewFlags": [
+      "npMismatch"
+    ]
+  },
+  {
+    "id": "p078",
+    "name": "Pin de retención Plus Z Pin",
+    "brand": "Rotor Clip",
+    "np": "2100ZP",
+    "category": "Mecánica y lubricación",
+    "subcategory": "Rodamientos y sujeción",
+    "image": null
+  },
+  {
+    "id": "p079",
+    "name": "Gancho metálico pequeño",
+    "brand": "AMETEK",
+    "np": "ML3867",
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Refacciones y varios",
+    "image": null
+  },
+  {
+    "id": "p080",
+    "name": "Base plástica / soporte con perforaciones",
+    "brand": null,
+    "np": null,
+    "category": "Mantenimiento y consumibles",
+    "subcategory": "Refacciones y varios",
+    "image": null,
+    "reviewFlags": [
+      "vagueName"
+    ]
+  },
+  {
+    "id": "p081",
+    "name": "Candado de combinación 50mm",
+    "brand": "Hermex",
+    "np": "CD-50CP",
+    "category": "Seguridad industrial",
+    "subcategory": "Bloqueo (LOTO) y candados",
+    "image": null
+  },
+  {
+    "id": "p082",
+    "name": "Dispositivo lockout con cable nylon",
+    "brand": "Brady",
+    "np": "51442",
+    "category": "Seguridad industrial",
+    "subcategory": "Bloqueo (LOTO) y candados",
+    "image": null
+  },
+  {
+    "id": "p083",
+    "name": "Cinta industrial para demarcación",
+    "brand": "Mighty Line",
+    "np": null,
+    "category": "Seguridad industrial",
+    "subcategory": "Demarcación",
+    "image": null
+  },
+  {
+    "id": "p084",
+    "name": "Dispositivo de bloqueo múltiple",
+    "brand": "Brady",
+    "np": "65375",
+    "category": "Seguridad industrial",
+    "subcategory": "Bloqueo (LOTO) y candados",
+    "image": null
+  },
+  {
+    "id": "p085",
+    "name": "Ribbon de cera para impresora térmica",
+    "brand": null,
+    "np": null,
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p086",
+    "name": "Ribbon de cera negro 83mm x 300m",
+    "brand": null,
+    "np": "55333-083",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p087",
+    "name": "Ribbon de cera negro 110mm x 91m",
+    "brand": null,
+    "np": "E2223G-110091",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p088",
+    "name": "Ribbon de cera negro 110mm x 450m",
+    "brand": null,
+    "np": "55375-110",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p089",
+    "name": "Ribbon resina negro 89mm x 450m",
+    "brand": null,
+    "np": "55333-089",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p090",
+    "name": "Ribbon textil negro para impresora Brady",
+    "brand": "Brady",
+    "np": "R4302/Y36204",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p091",
+    "name": "Ribbon resina 110mm x 450m",
+    "brand": null,
+    "np": "FRD11033",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p092",
+    "name": "Ribbon térmico negro 83mm x 300m",
+    "brand": "Brady",
+    "np": "54803",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p093",
+    "name": "Ribbon de cera para impresora térmica",
+    "brand": null,
+    "np": "5L08S105A",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p094",
+    "name": "Ribbon transferencia térmica WAX 104mm",
+    "brand": null,
+    "np": "WAX104",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p095",
+    "name": "Ribbon transferencia térmica WAX 80mm x 450m",
+    "brand": null,
+    "np": "WAX80",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p096",
+    "name": "Ribbon transferencia térmica WAX GP725",
+    "brand": null,
+    "np": "GP725",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p097",
+    "name": "Ribbon transferencia térmica WAX 104mm x 457m",
+    "brand": null,
+    "np": "WAX104-457",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  },
+  {
+    "id": "p098",
+    "name": "Ribbon transferencia térmica WAX 83mm x 450m",
+    "brand": null,
+    "np": "WAX83-450",
+    "category": "Etiquetado e identificación",
+    "subcategory": "Ribbons",
+    "image": null
+  }
+]
