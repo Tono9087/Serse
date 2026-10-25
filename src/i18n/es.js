@@ -104,10 +104,12 @@ export const es = {
   backToResults: "← Volver a resultados",
 
   // Brands Page
-  brandsPageTitle: "Marcas en catálogo",
+  brandsPageTitle: "Marcas",
+  brandsSubtitle: "Marcas disponibles en el catálogo",
   brandsPageIntro: "Consulta los productos disponibles por fabricante dentro de nuestro catálogo MRO.",
   unspecifiedBrandNotice: "{n} productos sin marca especificada",
   viewBrandProducts: "Ver productos",
+  viewAll: "Ver todas",
 
   // Contact Page
   contactPageTitle: "Contacto",

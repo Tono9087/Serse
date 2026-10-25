@@ -27,3 +27,23 @@ export function normalizeNp(s) {
     .toLowerCase()
     .replace(/[^a-z0-9]/g, "");
 }
+
+/**
+ * Generates a clean URL and asset slug for a brand name:
+ * Lowercased, accents removed, non-alphanumerics replaced with '-', trimmed.
+ * Examples:
+ * - "Automation Components Inc." -> "automation-components-inc"
+ * - "Brady IDPAL" -> "brady-idpal"
+ * - "NASS Magnet / SYPC" -> "nass-magnet-sypc"
+ * @param {string | null | undefined} s
+ * @returns {string}
+ */
+export function slugifyBrand(s) {
+  if (s === null || s === undefined) return "";
+  return String(s)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}

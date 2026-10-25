@@ -111,29 +111,23 @@ export function Home() {
       .sort((a, b) => a.name.localeCompare(b.name, "es"));
   }, []);
 
-  const topBrands = useMemo(() => {
-    const counts = new Map();
-    for (const item of catalog) {
-      if (!item.brand) continue;
-      counts.set(item.brand, (counts.get(item.brand) || 0) + 1);
-    }
-    return Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => {
-        if (b.count !== a.count) return b.count - a.count;
-        return a.name.localeCompare(b.name, "es");
-      })
-      .slice(0, 12);
-  }, []);
-
   const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
   const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
 
   return (
     <div>
       {/* 1. Hero (reduced vertical padding, full-bleed with Container) */}
-      <section className="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-700 py-12 text-white sm:py-16">
-        <Container>
+      <section className="relative overflow-hidden bg-brand-950 py-12 text-white sm:py-16">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/banner_bg.jpg')" }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/80 to-brand-900/70"
+          aria-hidden="true"
+        />
+        <Container className="relative z-10">
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
               {SITE.name} · {SITE.badge}
@@ -189,7 +183,7 @@ export function Home() {
             </div>
             <Link
               to="/catalogo"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded"
+              className="inline-flex items-center gap-1 rounded text-sm font-semibold text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
             >
               <span>{t("viewCatalog")}</span>
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -203,16 +197,16 @@ export function Home() {
                 <Link
                   key={cat.name}
                   to={`/catalogo?cat=${encodeURIComponent(cat.name)}`}
-                  className="group flex items-start gap-4 rounded-xl border border-line bg-white p-4 sm:p-5 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                  className="group flex items-start gap-4 rounded-xl border border-line bg-white p-4 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 sm:p-5"
                 >
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lavender text-brand-900 group-hover:bg-gradient-to-r group-hover:from-brand-700 group-hover:to-brand-500 group-hover:text-white transition duration-150">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lavender text-brand-900 transition duration-150 group-hover:bg-gradient-to-r group-hover:from-brand-700 group-hover:to-brand-500 group-hover:text-white">
                     <IconComponent className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-sm sm:text-base font-semibold text-brand-900 group-hover:text-brand-700 line-clamp-2">
+                    <h3 className="line-clamp-2 text-sm font-semibold text-brand-900 transition group-hover:text-brand-700 sm:text-base">
                       {cat.name}
                     </h3>
-                    <p className="mt-1 text-xs font-mono text-muted">
+                    <p className="mt-1 font-mono text-xs text-muted">
                       {cat.count === 1
                         ? t("categoryProductCountOne")
                         : t("categoryProductCount", { count: cat.count })}
@@ -225,43 +219,10 @@ export function Home() {
         </Container>
       </section>
 
-      {/* 3. Brands strip (wraps naturally) */}
-      <section className="py-12 sm:py-16">
-        <Container>
-          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
-            <h2 className="text-2xl font-semibold text-brand-900">
-              {t("brandsHeading")}
-            </h2>
-            <Link
-              to="/marcas"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded"
-            >
-              <span>{t("viewAllBrands")}</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2.5">
-            {topBrands.map((brand) => (
-              <Link
-                key={brand.name}
-                to={`/catalogo?brand=${encodeURIComponent(brand.name)}`}
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-line bg-white px-4 py-2 text-sm font-semibold text-brand-900 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
-              >
-                <span>{brand.name}</span>
-                <span className="rounded bg-lavender px-1.5 py-0.5 text-xs font-mono text-muted">
-                  {brand.count}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* 4. Clients strip (Section D) */}
+      {/* 3. Clients strip */}
       <ClientsSection />
 
-      {/* 5. Contact strip */}
+      {/* 4. Contact strip */}
       <section className="border-t border-line bg-lavender py-10">
         <Container>
           <div className="flex flex-col justify-between gap-6 rounded-xl border border-line bg-white p-6 lg:flex-row lg:items-center">

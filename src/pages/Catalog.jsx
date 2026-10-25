@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
-import { MessageSquare, PackageSearch, RotateCcw } from "lucide-react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { ArrowRight, MessageSquare, PackageSearch, RotateCcw } from "lucide-react";
 import catalog from "../data/catalog.json";
 import { SITE } from "../config/site.js";
 import { applyFilters, facetCounts } from "../lib/filters.js";
@@ -17,6 +17,7 @@ import { Breadcrumbs } from "../components/ui/Breadcrumbs.jsx";
 import { Drawer } from "../components/ui/Drawer.jsx";
 import { Button } from "../components/ui/Button.jsx";
 import { Container } from "../components/layout/Container.jsx";
+import { BrandCard } from "../components/brands/BrandCard.jsx";
 
 const VALID_SIZES = new Set([12, 24, 48]);
 const VALID_SORTS = new Set(["relevance", "name", "brand", "np"]);
@@ -72,6 +73,22 @@ export function Catalog() {
         validBrandSet: brandSet,
       };
     }, []);
+
+  // Top 12 brands for the landing strip
+  const top12Brands = useMemo(() => {
+    const counts = new Map();
+    for (const item of catalog) {
+      if (!item.brand) continue;
+      counts.set(item.brand, (counts.get(item.brand) || 0) + 1);
+    }
+    return Array.from(counts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => {
+        if (b.count !== a.count) return b.count - a.count;
+        return a.name.localeCompare(b.name, "es");
+      })
+      .slice(0, 12);
+  }, []);
 
   // Parse and validate URL search params
   const q = searchParams.get("q") || "";
@@ -160,6 +177,8 @@ export function Catalog() {
   const pagination = useMemo(() => {
     return paginate(filteredProducts, pageParam, size);
   }, [filteredProducts, pageParam, size]);
+
+  const showBrandStrip = !q && !cat && !sub && brands.length === 0;
 
   // Helper to update URL params cleanly
   function updateParams(updates, { resetPage = true } = {}) {
@@ -296,6 +315,34 @@ export function Catalog() {
 
         {/* Main Results Column */}
         <div className="min-w-0 flex-1">
+          {showBrandStrip && (
+            <div className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-brand-900">
+                  {t("navBrands")}
+                </h2>
+                <Link
+                  to="/marcas"
+                  className="inline-flex items-center gap-1 rounded text-sm font-semibold text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                >
+                  <span>{t("viewAll")}</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+
+              <div className="flex gap-3 overflow-x-auto pb-2 snap-x md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:pb-0 xl:grid-cols-6">
+                {top12Brands.map((brand) => (
+                  <BrandCard
+                    key={brand.name}
+                    brand={brand.name}
+                    count={brand.count}
+                    className="w-40 shrink-0 snap-start md:w-auto md:shrink"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           <ResultsBar
             totalCount={filteredProducts.length}
             q={q}

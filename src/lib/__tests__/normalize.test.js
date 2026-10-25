@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { normalizeNp, normalizeText } from "../normalize.js";
+import { normalizeNp, normalizeText, slugifyBrand } from "../normalize.js";
 
 describe("normalize", () => {
   it("normalizes part numbers identically regardless of spaces, slashes, dashes or casing", () => {
@@ -20,5 +20,28 @@ describe("normalize", () => {
     expect(normalizeText("  Válvula   Neumática  ")).toBe("valvula neumatica");
     expect(normalizeText(null)).toBe("");
     expect(normalizeText(undefined)).toBe("");
+  });
+
+  describe("slugifyBrand", () => {
+    it("lowercases, removes accents, replaces non-alphanumerics with hyphens and trims", () => {
+      expect(slugifyBrand("Automation Components Inc.")).toBe(
+        "automation-components-inc"
+      );
+      expect(slugifyBrand("Brady IDPAL")).toBe("brady-idpal");
+      expect(slugifyBrand("NASS Magnet / SYPC")).toBe("nass-magnet-sypc");
+    });
+
+    it("handles accents and special characters properly", () => {
+      expect(slugifyBrand("FESTO Neumática")).toBe("festo-neumatica");
+      expect(slugifyBrand("3M")).toBe("3m");
+      expect(slugifyBrand("SMC Corporation")).toBe("smc-corporation");
+    });
+
+    it("handles null, undefined, empty, and whitespace strings", () => {
+      expect(slugifyBrand(null)).toBe("");
+      expect(slugifyBrand(undefined)).toBe("");
+      expect(slugifyBrand("")).toBe("");
+      expect(slugifyBrand("   ---   ")).toBe("");
+    });
   });
 });
