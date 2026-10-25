@@ -3,6 +3,7 @@ import { I18nProvider } from "./i18n/I18nContext.jsx";
 import { RfqProvider } from "./context/RfqContext.jsx";
 import { Layout } from "./components/layout/Layout.jsx";
 import { Home } from "./pages/Home.jsx";
+import { About } from "./pages/About.jsx";
 import { Catalog } from "./pages/Catalog.jsx";
 import { ProductPage } from "./pages/ProductPage.jsx";
 import { Brands } from "./pages/Brands.jsx";
@@ -17,6 +18,7 @@ export default function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
+              <Route path="/nosotros" element={<About />} />
               <Route path="/catalogo" element={<Catalog />} />
               <Route path="/producto/:id" element={<ProductPage />} />
               <Route path="/marcas" element={<Brands />} />

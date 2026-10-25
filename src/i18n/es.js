@@ -20,6 +20,7 @@ export const es = {
 
   // Navigation
   navHome: "Inicio",
+  navAbout: "Nosotros",
   navCatalog: "Catálogo",
   navBrands: "Marcas",
   navContact: "Contacto",
@@ -54,7 +55,7 @@ export const es = {
   contactStripHeading: "¿Necesitas cotizar suministros MRO?",
   contactStripSub: "Atención directa para compras y mantenimiento industrial.",
   callPhone: "Llamar al {phone}",
-  clientsHeading: "Empresas que confían en nuestras soluciones MRO",
+  clientsHeading: "Empresas que confían en nosotrosnosotros",
 
   // Catalog & Filters
   catalogTitle: "Catálogo industrial MRO",
@@ -110,6 +111,14 @@ export const es = {
   unspecifiedBrandNotice: "{n} productos sin marca especificada",
   viewBrandProducts: "Ver productos",
   viewAll: "Ver todas",
+
+  // About Page
+  aboutPageTitle: "Sobre nosotros",
+  aboutPillarsHeading: "Compromiso, visión y misión",
+  aboutSupplyHeading: "Qué suministramos",
+  aboutSupplySub: "Explora el catálogo por línea de producto.",
+  aboutCtaHeading: "¿Buscas una pieza o una cotización?",
+  requestQuote: "Solicitar cotización",
 
   // Contact Page
   contactPageTitle: "Contacto",
@@ -171,6 +180,8 @@ export const es = {
   // Page Meta Titles & Descriptions
   metaHomeTitle: "SERSE Industrial | Suministros MRO en Chihuahua",
   metaHomeDesc: "Encuentra productos MRO para mantenimiento, reparación y operación industrial.",
+  metaAboutTitle: "Sobre nosotros | SERSE Industrial",
+  metaAboutDesc: "SERSE Industrial es una empresa especializada en soluciones MRO enfocada en garantizar la continuidad operativa de empresas industriales en México.",
   metaCatalogTitle: "Catálogo industrial MRO | SERSE Industrial",
   metaCatalogDesc: "Busca por número de parte, nombre o marca y solicita tu cotización por WhatsApp.",
   metaBrandsTitle: "Marcas | SERSE Industrial",

@@ -1,96 +1,13 @@
-import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Cog,
-  Cpu,
-  Gauge,
-  Mail,
-  MapPin,
-  MessageSquare,
-  Package,
-  PackageCheck,
-  Phone,
-  ShieldAlert,
-  Tag,
-  Wind,
-  Wrench,
-} from "lucide-react";
-import catalog from "../data/catalog.json";
+import { ArrowRight, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { SITE } from "../config/site.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { SearchBox } from "../components/search/SearchBox.jsx";
 import { Container } from "../components/layout/Container.jsx";
-
-const CATEGORY_ICON_MAP = {
-  Herramienta: Wrench,
-  Neumática: Wind,
-  "Mantenimiento y consumibles": PackageCheck,
-  "Eléctrico y electrónica": Cpu,
-  "Etiquetado e identificación": Tag,
-  Medición: Gauge,
-  "Mecánica y lubricación": Cog,
-  "Seguridad industrial": ShieldAlert,
-};
-
-function ClientsSection() {
-  const { t } = useI18n();
-  const [loadedMap, setLoadedMap] = useState({});
-
-  if (!SITE.clients || SITE.clients.length === 0) return null;
-
-  const anyLoaded = Object.values(loadedMap).some(Boolean);
-
-  return (
-    <>
-      {/* Invisible test images to detect if local files exist */}
-      <div className="sr-only" aria-hidden="true">
-        {SITE.clients.map((client) => (
-          <img
-            key={`preload-${client.name}`}
-            src={client.logo}
-            alt=""
-            onLoad={() =>
-              setLoadedMap((prev) => ({ ...prev, [client.name]: true }))
-            }
-            onError={() =>
-              setLoadedMap((prev) => ({ ...prev, [client.name]: false }))
-            }
-          />
-        ))}
-      </div>
-
-      {anyLoaded && (
-        <section className="border-t border-line bg-white py-12">
-          <Container>
-            <h2 className="text-center text-xs font-semibold uppercase tracking-wider text-muted">
-              {t("clientsHeading")}
-            </h2>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-              {SITE.clients.map((client) => {
-                if (!loadedMap[client.name]) return null;
-                return (
-                  <div
-                    key={client.name}
-                    className="flex h-16 items-center justify-center rounded-xl border border-line bg-lavender/40 px-6 py-2 shadow-xs"
-                  >
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="max-h-10 w-auto object-contain"
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
-      )}
-    </>
-  );
-}
+import { CategoryGrid } from "../components/catalog/CategoryGrid.jsx";
+import { ClientsSection } from "../components/clients/ClientsSection.jsx";
 
 export function Home() {
   const { t } = useI18n();
@@ -99,17 +16,6 @@ export function Home() {
     title: t("metaHomeTitle"),
     description: t("metaHomeDesc"),
   });
-
-  const categories = useMemo(() => {
-    const counts = new Map();
-    for (const item of catalog) {
-      if (!item.category) continue;
-      counts.set(item.category, (counts.get(item.category) || 0) + 1);
-    }
-    return Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => a.name.localeCompare(b.name, "es"));
-  }, []);
 
   const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
   const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
@@ -190,32 +96,7 @@ export function Home() {
             </Link>
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            {categories.map((cat) => {
-              const IconComponent = CATEGORY_ICON_MAP[cat.name] || Package;
-              return (
-                <Link
-                  key={cat.name}
-                  to={`/catalogo?cat=${encodeURIComponent(cat.name)}`}
-                  className="group flex items-start gap-4 rounded-xl border border-line bg-white p-4 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 sm:p-5"
-                >
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lavender text-brand-900 transition duration-150 group-hover:bg-gradient-to-r group-hover:from-brand-700 group-hover:to-brand-500 group-hover:text-white">
-                    <IconComponent className="h-5 w-5" aria-hidden="true" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="line-clamp-2 text-sm font-semibold text-brand-900 transition group-hover:text-brand-700 sm:text-base">
-                      {cat.name}
-                    </h3>
-                    <p className="mt-1 font-mono text-xs text-muted">
-                      {cat.count === 1
-                        ? t("categoryProductCountOne")
-                        : t("categoryProductCount", { count: cat.count })}
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <CategoryGrid />
         </Container>
       </section>
 

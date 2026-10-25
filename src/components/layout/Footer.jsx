@@ -40,6 +40,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  to="/nosotros"
+                  className="text-white/85 hover:text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
+                >
+                  {t("navAbout")}
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/catalogo"
                   className="text-white/85 hover:text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                 >

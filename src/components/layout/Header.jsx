@@ -36,6 +36,7 @@ export function Header() {
 
   const navItems = [
     { to: "/", label: t("navHome"), end: true },
+    { to: "/nosotros", label: t("navAbout") },
     { to: "/catalogo", label: t("navCatalog") },
     { to: "/marcas", label: t("navBrands") },
     { to: "/contacto", label: t("navContact") },

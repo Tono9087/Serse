@@ -20,6 +20,7 @@ export const en = {
 
   // Navigation
   navHome: "Home",
+  navAbout: "About Us",
   navCatalog: "Catalog",
   navBrands: "Brands",
   navContact: "Contact",
@@ -54,7 +55,7 @@ export const en = {
   contactStripHeading: "Need a quote for MRO supplies?",
   contactStripSub: "Direct assistance for industrial purchasing and maintenance teams.",
   callPhone: "Call {phone}",
-  clientsHeading: "Companies that trust our MRO solutions",
+  clientsHeading: "Companies that trust us",
 
   // Catalog & Filters
   catalogTitle: "Industrial MRO Catalog",
@@ -110,6 +111,14 @@ export const en = {
   unspecifiedBrandNotice: "{n} products without a specified brand",
   viewBrandProducts: "View products",
   viewAll: "View all",
+
+  // About Page
+  aboutPageTitle: "About Us",
+  aboutPillarsHeading: "Commitment, vision, and mission",
+  aboutSupplyHeading: "What we supply",
+  aboutSupplySub: "Browse the catalog by product line.",
+  aboutCtaHeading: "Looking for a part or a quote?",
+  requestQuote: "Request a quote",
 
   // Contact Page
   contactPageTitle: "Contact",
@@ -171,6 +180,8 @@ export const en = {
   // Page Meta Titles & Descriptions
   metaHomeTitle: "SERSE Industrial | MRO Supplies in Chihuahua",
   metaHomeDesc: "Find MRO products for industrial maintenance, repair, and operations.",
+  metaAboutTitle: "About Us | SERSE Industrial",
+  metaAboutDesc: "SERSE Industrial is a specialized MRO solutions company focused on ensuring operational continuity for industrial facilities across Mexico.",
   metaCatalogTitle: "Industrial MRO Catalog | SERSE Industrial",
   metaCatalogDesc: "Search by part number, name, or brand and request your quote via WhatsApp.",
   metaBrandsTitle: "Brands | SERSE Industrial",
