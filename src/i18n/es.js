@@ -23,7 +23,6 @@ export const es = {
   navCatalog: "Catálogo",
   navBrands: "Marcas",
   navContact: "Contacto",
-  navQuickOrder: "Cotización rápida",
 
   // SearchBox
   searchPlaceholder: "Buscar por N/P, nombre o marca",
@@ -104,26 +103,6 @@ export const es = {
   moreFromCategory: "Más de esta categoría",
   backToResults: "← Volver a resultados",
 
-  // Quick Order
-  quickOrderHeading: "Cotización rápida",
-  quickOrderHelp: "Pega tu lista: un producto por renglón, con N/P y cantidad.",
-  quickOrderDelimiterHint: "Si tu N/P incluye un espacio o guion antes de la cantidad, sepáralos con coma, por ejemplo: WAX104, 457.",
-  quickOrderInputLabel: "Lista de números de parte",
-  uploadFileLabel: "Cargar archivo .csv o .txt",
-  excelNote: "Desde Excel: copia las columnas y pégalas aquí",
-  reviewListButton: "Revisar lista",
-  maxLinesNotice: "Se procesaron las primeras 200 líneas. {extra} líneas adicionales fueron omitidas.",
-  quickOrderAnnouncement: "{n} encontrados, {m} no encontrados",
-  parsedResultsTitle: "Resultados del análisis",
-  addFoundToQuote: "Agregar encontrados a la lista",
-  copyUnmatchedButton: "Copiar no encontrados",
-  askUnmatchedWhatsApp: "Pedir los no encontrados por WhatsApp",
-  statusLabel: "Estado",
-  statusFound: "Encontrado",
-  statusAmbiguous: "Varias coincidencias",
-  statusNotFound: "No encontrado",
-  rfqQuickOrderPrompt: "¿Tienes una lista de varios productos? Usa la cotización rápida →",
-
   // Brands Page
   brandsPageTitle: "Marcas en catálogo",
   brandsPageIntro: "Consulta los productos disponibles por fabricante dentro de nuestro catálogo MRO.",
@@ -192,8 +171,6 @@ export const es = {
   metaHomeDesc: "Encuentra productos MRO para mantenimiento, reparación y operación industrial.",
   metaCatalogTitle: "Catálogo industrial MRO | SERSE Industrial",
   metaCatalogDesc: "Busca por número de parte, nombre o marca y solicita tu cotización por WhatsApp.",
-  metaQuickOrderTitle: "Cotización rápida | SERSE Industrial",
-  metaQuickOrderDesc: "Pega tu lista de números de parte y arma tu cotización en segundos.",
   metaBrandsTitle: "Marcas | SERSE Industrial",
   metaBrandsDesc: "Marcas de suministros MRO disponibles en el catálogo de SERSE Industrial.",
   metaContactTitle: "Contacto | SERSE Industrial",

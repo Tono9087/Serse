@@ -1,10 +1,9 @@
 import { useId, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Check,
   ClipboardList,
   Copy,
-  FileText,
   Info,
   MessageSquare,
   Trash2,
@@ -130,14 +129,6 @@ export function RfqDrawer() {
             >
               {t("viewCatalog")}
             </Button>
-            <Link
-              to="/cotizacion-rapida"
-              onClick={close}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:underline"
-            >
-              <FileText className="h-3.5 w-3.5" aria-hidden="true" />
-              <span>{t("rfqQuickOrderPrompt")}</span>
-            </Link>
           </div>
         </div>
       ) : (
@@ -194,18 +185,6 @@ export function RfqDrawer() {
                 />
               ))}
             </ul>
-
-            {/* Quick order link under item list per Section C.1 */}
-            <div className="mt-3 pt-3 border-t border-line text-center">
-              <Link
-                to="/cotizacion-rapida"
-                onClick={close}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:underline"
-              >
-                <FileText className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{t("rfqQuickOrderPrompt")}</span>
-              </Link>
-            </div>
           </div>
 
           <form
@@ -220,14 +199,16 @@ export function RfqDrawer() {
             <div>
               <label
                 htmlFor={`${formId}-nombre`}
-                className="block text-sm font-medium text-brand-900"
+                className="block text-xs font-semibold text-brand-900"
               >
-                {t("fieldFullName")} <span className="text-danger">*</span>
+                {t("fieldFullName")}{" "}
+                <span className="text-danger" aria-hidden="true">
+                  *
+                </span>
               </label>
               <input
                 id={`${formId}-nombre`}
                 type="text"
-                required
                 value={nombre}
                 onChange={(e) => {
                   setNombre(e.target.value);
@@ -235,18 +216,15 @@ export function RfqDrawer() {
                     setErrors((prev) => ({ ...prev, nombre: undefined }));
                   }
                 }}
+                aria-required="true"
                 aria-invalid={Boolean(errors.nombre)}
                 aria-describedby={errors.nombre ? nameErrorId : undefined}
-                className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
+                className={`mt-1 w-full rounded-lg border bg-white px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
                   errors.nombre ? "border-danger" : "border-line"
                 }`}
               />
               {errors.nombre && (
-                <p
-                  id={nameErrorId}
-                  role="alert"
-                  className="mt-1 text-xs font-medium text-danger"
-                >
+                <p id={nameErrorId} className="mt-1 text-xs text-danger">
                   {errors.nombre}
                 </p>
               )}
@@ -255,14 +233,16 @@ export function RfqDrawer() {
             <div>
               <label
                 htmlFor={`${formId}-empresa`}
-                className="block text-sm font-medium text-brand-900"
+                className="block text-xs font-semibold text-brand-900"
               >
-                {t("fieldCompany")} <span className="text-danger">*</span>
+                {t("fieldCompany")}{" "}
+                <span className="text-danger" aria-hidden="true">
+                  *
+                </span>
               </label>
               <input
                 id={`${formId}-empresa`}
                 type="text"
-                required
                 value={empresa}
                 onChange={(e) => {
                   setEmpresa(e.target.value);
@@ -270,18 +250,15 @@ export function RfqDrawer() {
                     setErrors((prev) => ({ ...prev, empresa: undefined }));
                   }
                 }}
+                aria-required="true"
                 aria-invalid={Boolean(errors.empresa)}
                 aria-describedby={errors.empresa ? companyErrorId : undefined}
-                className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
+                className={`mt-1 w-full rounded-lg border bg-white px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
                   errors.empresa ? "border-danger" : "border-line"
                 }`}
               />
               {errors.empresa && (
-                <p
-                  id={companyErrorId}
-                  role="alert"
-                  className="mt-1 text-xs font-medium text-danger"
-                >
+                <p id={companyErrorId} className="mt-1 text-xs text-danger">
                   {errors.empresa}
                 </p>
               )}
@@ -290,14 +267,16 @@ export function RfqDrawer() {
             <div>
               <label
                 htmlFor={`${formId}-correo`}
-                className="block text-sm font-medium text-brand-900"
+                className="block text-xs font-semibold text-brand-900"
               >
-                {t("fieldEmail")} <span className="text-danger">*</span>
+                {t("fieldEmail")}{" "}
+                <span className="text-danger" aria-hidden="true">
+                  *
+                </span>
               </label>
               <input
                 id={`${formId}-correo`}
                 type="email"
-                required
                 value={correo}
                 onChange={(e) => {
                   setCorreo(e.target.value);
@@ -305,18 +284,15 @@ export function RfqDrawer() {
                     setErrors((prev) => ({ ...prev, correo: undefined }));
                   }
                 }}
+                aria-required="true"
                 aria-invalid={Boolean(errors.correo)}
                 aria-describedby={errors.correo ? emailErrorId : undefined}
-                className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
+                className={`mt-1 w-full rounded-lg border bg-white px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
                   errors.correo ? "border-danger" : "border-line"
                 }`}
               />
               {errors.correo && (
-                <p
-                  id={emailErrorId}
-                  role="alert"
-                  className="mt-1 text-xs font-medium text-danger"
-                >
+                <p id={emailErrorId} className="mt-1 text-xs text-danger">
                   {errors.correo}
                 </p>
               )}
@@ -325,10 +301,10 @@ export function RfqDrawer() {
             <div>
               <label
                 htmlFor={`${formId}-telefono`}
-                className="block text-sm font-medium text-brand-900"
+                className="block text-xs font-semibold text-brand-900"
               >
                 {t("fieldPhone")}{" "}
-                <span className="text-xs font-normal text-muted">
+                <span className="text-muted font-normal">
                   ({t("fieldPhoneOptional")})
                 </span>
               </label>
@@ -337,7 +313,7 @@ export function RfqDrawer() {
                 type="tel"
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-line px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700"
+                className="mt-1 w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700"
               />
             </div>
 
@@ -345,12 +321,9 @@ export function RfqDrawer() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor={`${formId}-notas`}
-                  className="block text-sm font-medium text-brand-900"
+                  className="block text-xs font-semibold text-brand-900"
                 >
-                  {t("fieldNotes")}{" "}
-                  <span className="text-xs font-normal text-muted">
-                    ({t("fieldPhoneOptional")})
-                  </span>
+                  {t("fieldNotes")}
                 </label>
                 <span className="text-xs text-muted font-mono">
                   {notas.length}/500
@@ -359,86 +332,61 @@ export function RfqDrawer() {
               <textarea
                 id={`${formId}-notas`}
                 rows={3}
-                maxLength={500}
                 value={notas}
                 onChange={(e) => {
                   setNotas(e.target.value);
-                  if (errors.notas) {
+                  if (errors.notas && e.target.value.length <= 500) {
                     setErrors((prev) => ({ ...prev, notas: undefined }));
                   }
                 }}
                 aria-invalid={Boolean(errors.notas)}
                 aria-describedby={errors.notas ? notesErrorId : undefined}
-                className={`mt-1 w-full rounded-lg border px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
+                className={`mt-1 w-full rounded-lg border bg-white px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-700 ${
                   errors.notas ? "border-danger" : "border-line"
                 }`}
               />
               {errors.notas && (
-                <p
-                  id={notesErrorId}
-                  role="alert"
-                  className="mt-1 text-xs font-medium text-danger"
-                >
+                <p id={notesErrorId} className="mt-1 text-xs text-danger">
                   {errors.notas}
                 </p>
               )}
             </div>
 
             {isUrlLong && (
-              <div
-                role="status"
-                className="flex items-start gap-2.5 rounded-lg border border-brand-700/40 bg-lavender p-3 text-xs text-brand-900"
-              >
-                <Info
-                  className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-700"
-                  aria-hidden="true"
-                />
+              <div className="rounded-lg border border-line bg-lavender p-3 text-xs text-brand-900 flex items-start gap-2">
+                <Info className="h-4 w-4 text-brand-700 flex-shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{t("longMessageWarning")}</span>
               </div>
             )}
 
-            <div className="space-y-2.5 pt-2">
-              <Button
+            <div className="space-y-2 pt-2">
+              <button
                 type="submit"
-                variant="primary"
                 disabled={count === 0}
-                className="w-full"
+                className="w-full inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg bg-whatsapp px-4 py-2.5 text-sm font-semibold text-brand-950 shadow-sm transition hover:brightness-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <MessageSquare className="h-4 w-4" aria-hidden="true" />
-                {t("sendQuoteWhatsApp")}
-              </Button>
+                <span>{t("sendQuoteWhatsApp")}</span>
+              </button>
 
-              <div className="flex items-center gap-2">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={handleCopyMessage}
-                  className="flex-1"
-                >
-                  {copied ? (
-                    <>
-                      <Check
-                        className="h-4 w-4 text-success"
-                        aria-hidden="true"
-                      />
-                      <span className="text-success">{t("copiedMessage")}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-4 w-4" aria-hidden="true" />
-                      {t("copyMessage")}
-                    </>
-                  )}
-                </Button>
-
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={() => setConfirmingClear(true)}
-                >
-                  {t("clearList")}
-                </Button>
-              </div>
+              <button
+                type="button"
+                onClick={handleCopyMessage}
+                disabled={count === 0}
+                className="w-full inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 transition hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {copied ? (
+                  <>
+                    <Check className="h-4 w-4 text-success" aria-hidden="true" />
+                    <span className="text-success">{t("copiedMessage")}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-4 w-4 text-muted" aria-hidden="true" />
+                    <span>{t("copyMessage")}</span>
+                  </>
+                )}
+              </button>
             </div>
           </form>
         </div>

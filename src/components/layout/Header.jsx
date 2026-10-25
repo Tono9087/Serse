@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useSearchParams } from "react-router-dom";
-import { FileText, Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
+import { Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
 import { SITE } from "../../config/site.js";
 import { buildGenericGreetingUrl } from "../../lib/whatsapp.js";
 import { useI18n } from "../../i18n/I18nContext.jsx";
@@ -13,8 +13,7 @@ export function LogoLockup({ className = "" }) {
     <Link
       to="/"
       aria-label={`${SITE.name} ${SITE.badge}`}
-      className={`inline-flex items-center gap-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className}`}
-    >
+      className={`inline-flex items-center gap-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className}`}>
       <span className="text-xl font-bold tracking-tight text-white">SERSE</span>
       <span className="text-lg font-normal text-white">Industrial</span>
       <span className="rounded bg-brand-500 px-1.5 py-0.5 text-xs font-bold uppercase tracking-wider text-white">
@@ -36,7 +35,6 @@ export function Header() {
   const navItems = [
     { to: "/", label: t("navHome"), end: true },
     { to: "/catalogo", label: t("navCatalog") },
-    { to: "/cotizacion-rapida", label: t("navQuickOrder") },
     { to: "/marcas", label: t("navBrands") },
     { to: "/contacto", label: t("navContact") },
   ];
@@ -76,14 +74,6 @@ export function Header() {
                 <span>{SITE.email}</span>
               </a>
             )}
-            {/* Quick order in utility strip */}
-            <Link
-              to="/cotizacion-rapida"
-              className="inline-flex items-center gap-1.5 text-white/90 hover:text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
-            >
-              <FileText className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
-              <span>{t("navQuickOrder")}</span>
-            </Link>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-white/80 hidden sm:inline">{SITE.location}</span>
@@ -103,13 +93,26 @@ export function Header() {
                 aria-expanded={mobileMenuOpen}
                 aria-controls="mobile-nav-menu"
                 aria-label={mobileMenuOpen ? t("closeMenu") : t("openMenu")}
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-white hover:bg-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 lg:hidden"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-white hover:bg-brand-800 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 lg:hidden"
               >
-                {mobileMenuOpen ? (
-                  <X className="h-5 w-5" aria-hidden="true" />
-                ) : (
-                  <Menu className="h-5 w-5" aria-hidden="true" />
-                )}
+                <span className="relative h-5 w-5">
+                  <Menu
+                    className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out ${
+                      mobileMenuOpen
+                        ? "rotate-90 opacity-0 scale-75"
+                        : "rotate-0 opacity-100 scale-100"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <X
+                    className={`absolute inset-0 h-5 w-5 transition-all duration-200 ease-in-out ${
+                      mobileMenuOpen
+                        ? "rotate-0 opacity-100 scale-100"
+                        : "-rotate-90 opacity-0 scale-75"
+                    }`}
+                    aria-hidden="true"
+                  />
+                </span>
               </button>
 
               <LogoLockup />
@@ -158,35 +161,45 @@ export function Header() {
           </nav>
         </div>
 
-        {/* Mobile menu dropdown */}
-        {mobileMenuOpen && (
-          <nav
-            id="mobile-nav-menu"
-            aria-label={t("mainNavLabel")}
-            className="border-t border-line px-4 py-3 bg-mist lg:hidden"
-          >
-            <ul className="space-y-1">
-              {navItems.map((item) => (
-                <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    end={item.end}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={({ isActive }) =>
-                      `block rounded-lg px-3 py-2 text-sm font-bold transition duration-150 border-l-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 ${
-                        isActive
-                          ? "bg-lavender text-brand-700 border-brand-700"
-                          : "text-ink border-transparent hover:bg-lavender hover:text-brand-700"
-                      }`
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
+        {/* Mobile menu dropdown with smooth grid-rows accordion animation */}
+        <div
+          id="mobile-nav-menu"
+          className={`grid transition-all duration-300 ease-out lg:hidden ${
+            mobileMenuOpen
+              ? "grid-rows-[1fr] opacity-100 visible border-t border-line"
+              : "grid-rows-[0fr] opacity-0 invisible border-t-0 pointer-events-none"
+          }`}
+        >
+          <div className="overflow-hidden">
+            <nav
+              aria-label={t("mainNavLabel")}
+              className={`px-4 py-3 bg-mist transition-transform duration-300 ease-out ${
+                mobileMenuOpen ? "translate-y-0" : "-translate-y-2"
+              }`}
+            >
+              <ul className="space-y-1">
+                {navItems.map((item) => (
+                  <li key={item.to}>
+                    <NavLink
+                      to={item.to}
+                      end={item.end}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `block rounded-lg px-3 py-2 text-sm font-bold transition duration-150 border-l-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 ${
+                          isActive
+                            ? "bg-lavender text-brand-700 border-brand-700"
+                            : "text-ink border-transparent hover:bg-lavender hover:text-brand-700"
+                        }`
+                      }
+                    >
+                      {item.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
     </header>
   );
