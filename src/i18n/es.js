@@ -16,12 +16,14 @@ export const es = {
   categoryLabel: "Categoría",
   subcategoryLabel: "Subcategoría",
   addedToListAnnouncement: "Agregado a tu lista",
+  breadcrumbsAria: "Migas de pan",
 
   // Navigation
   navHome: "Inicio",
   navCatalog: "Catálogo",
   navBrands: "Marcas",
   navContact: "Contacto",
+  navQuickOrder: "Cotización rápida",
 
   // SearchBox
   searchPlaceholder: "Buscar por N/P, nombre o marca",
@@ -53,6 +55,7 @@ export const es = {
   contactStripHeading: "¿Necesitas cotizar suministros MRO?",
   contactStripSub: "Atención directa para compras y mantenimiento industrial.",
   callPhone: "Llamar al {phone}",
+  clientsHeading: "Empresas que confían en nuestras soluciones MRO",
 
   // Catalog & Filters
   catalogTitle: "Catálogo industrial MRO",
@@ -73,6 +76,10 @@ export const es = {
   sortByLabel: "Ordenar por",
   sortByName: "Nombre (A–Z)",
   sortByBrand: "Marca (A–Z)",
+  sortByNp: "N/P (A–Z)",
+  viewToggleLabel: "Modo de visualización",
+  gridView: "Cuadrícula",
+  tableView: "Tabla",
   paginationAria: "Paginación",
   prevPage: "Página anterior",
   nextPage: "Página siguiente",
@@ -82,7 +89,7 @@ export const es = {
   expandCategoryAria: "Mostrar subcategorías de {category}",
   collapseCategoryAria: "Ocultar subcategorías de {category}",
 
-  // Product Card & Modal
+  // Product Page & Details
   addToQuote: "+ Agregar a cotización",
   inYourList: "En tu lista",
   decreaseQtyAria: "Disminuir cantidad de {name}",
@@ -91,6 +98,29 @@ export const es = {
   viewProductDetailsAria: "Ver detalles de {name}",
   modalProductDetails: "Detalle del producto",
   viewInCatalogCategory: "Ver más en {category}",
+  copyNp: "Copiar",
+  askAboutProduct: "Preguntar por este producto",
+  moreFromCategory: "Más de esta categoría",
+  backToResults: "← Volver a resultados",
+
+  // Quick Order
+  quickOrderHeading: "Cotización rápida",
+  quickOrderHelp: "Pega tu lista: un producto por renglón, con N/P y cantidad.",
+  quickOrderInputLabel: "Lista de números de parte",
+  uploadFileLabel: "Cargar archivo .csv o .txt",
+  excelNote: "Desde Excel: copia las columnas y pégalas aquí",
+  reviewListButton: "Revisar lista",
+  maxLinesNotice: "Se procesaron las primeras 200 líneas. {extra} líneas adicionales fueron omitidas.",
+  quickOrderAnnouncement: "{n} encontrados, {m} no encontrados",
+  parsedResultsTitle: "Resultados del análisis",
+  addFoundToQuote: "Agregar encontrados a la lista",
+  copyUnmatchedButton: "Copiar no encontrados",
+  askUnmatchedWhatsApp: "Pedir los no encontrados por WhatsApp",
+  statusLabel: "Estado",
+  statusFound: "Encontrado",
+  statusAmbiguous: "Varias coincidencias",
+  statusNotFound: "No encontrado",
+  rfqQuickOrderPrompt: "¿Tienes una lista de varios productos? Usa la cotización rápida →",
 
   // Brands Page
   brandsPageTitle: "Marcas en catálogo",
@@ -160,6 +190,8 @@ export const es = {
   metaHomeDesc: "Encuentra productos MRO para mantenimiento, reparación y operación industrial.",
   metaCatalogTitle: "Catálogo industrial MRO | SERSE Industrial",
   metaCatalogDesc: "Busca por número de parte, nombre o marca y solicita tu cotización por WhatsApp.",
+  metaQuickOrderTitle: "Cotización rápida | SERSE Industrial",
+  metaQuickOrderDesc: "Pega tu lista de números de parte y arma tu cotización en segundos.",
   metaBrandsTitle: "Marcas | SERSE Industrial",
   metaBrandsDesc: "Marcas de suministros MRO disponibles en el catálogo de SERSE Industrial.",
   metaContactTitle: "Contacto | SERSE Industrial",

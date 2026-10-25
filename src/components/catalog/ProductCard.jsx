@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 import { Check, Minus, Plus } from "lucide-react";
 import { useRfq } from "../../context/RfqContext.jsx";
 import { useI18n } from "../../i18n/I18nContext.jsx";
@@ -5,19 +6,21 @@ import { Badge } from "../ui/Badge.jsx";
 import { Button } from "../ui/Button.jsx";
 import { ProductImage } from "../ui/ProductImage.jsx";
 
-export function ProductCard({ product, onOpenModal }) {
+export function ProductCard({ product, from }) {
   const { getQty, add, setQty, remove } = useRfq();
   const { t } = useI18n();
+  const location = useLocation();
 
   const qty = getQty(product.id);
   const inList = qty > 0;
+  const fromState = from ?? `${location.pathname}${location.search}`;
 
   return (
     <article className="flex flex-col rounded-xl border border-line bg-white transition duration-150 hover:border-brand-700 hover:shadow-sm">
-      {/* 1. Image area (aspect 4/3, bg-lavender) */}
-      <button
-        type="button"
-        onClick={() => onOpenModal(product.id)}
+      {/* 1. Image area (aspect 4/3, bg-lavender) as Link */}
+      <Link
+        to={`/producto/${product.id}`}
+        state={{ from: fromState }}
         aria-label={t("viewProductDetailsAria", { name: product.name })}
         className="group relative aspect-[4/3] w-full overflow-hidden rounded-t-xl bg-lavender p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-700"
       >
@@ -26,9 +29,9 @@ export function ProductCard({ product, onOpenModal }) {
           alt={product.name}
           width={400}
           height={300}
-          className="h-full w-full transition duration-150"
+          className="h-full w-full transition duration-150 group-hover:scale-105"
         />
-      </button>
+      </Link>
 
       <div className="flex flex-1 flex-col p-4">
         {/* 2. Brand badge (if any; hidden when brand === null) */}
@@ -36,15 +39,15 @@ export function ProductCard({ product, onOpenModal }) {
           {product.brand && <Badge variant="brand">{product.brand}</Badge>}
         </div>
 
-        {/* 3. Name (2-line clamp) */}
+        {/* 3. Name (2-line clamp) as Link */}
         <h3 className="mt-1.5 text-base font-semibold text-brand-900 leading-snug">
-          <button
-            type="button"
-            onClick={() => onOpenModal(product.id)}
+          <Link
+            to={`/producto/${product.id}`}
+            state={{ from: fromState }}
             className="line-clamp-2 text-left hover:text-brand-700 focus:outline-none focus-visible:underline"
           >
             {product.name}
-          </button>
+          </Link>
         </h3>
 
         {/* 4. N/P in monospace */}

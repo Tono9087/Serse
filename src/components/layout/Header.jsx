@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useSearchParams } from "react-router-dom";
-import { Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
+import { FileText, Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
 import { SITE } from "../../config/site.js";
 import { buildGenericGreetingUrl } from "../../lib/whatsapp.js";
 import { useI18n } from "../../i18n/I18nContext.jsx";
@@ -36,6 +36,7 @@ export function Header() {
   const navItems = [
     { to: "/", label: t("navHome"), end: true },
     { to: "/catalogo", label: t("navCatalog") },
+    { to: "/cotizacion-rapida", label: t("navQuickOrder") },
     { to: "/marcas", label: t("navBrands") },
     { to: "/contacto", label: t("navContact") },
   ];
@@ -75,6 +76,14 @@ export function Header() {
                 <span>{SITE.email}</span>
               </a>
             )}
+            {/* Quick order in utility strip */}
+            <Link
+              to="/cotizacion-rapida"
+              className="inline-flex items-center gap-1.5 text-white/90 hover:text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
+            >
+              <FileText className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" />
+              <span>{t("navQuickOrder")}</span>
+            </Link>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-white/80 hidden sm:inline">{SITE.location}</span>

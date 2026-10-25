@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { MessageSquare, PackageSearch, RotateCcw } from "lucide-react";
 import catalog from "../data/catalog.json";
 import { SITE } from "../config/site.js";
@@ -11,18 +11,19 @@ import { useI18n } from "../i18n/I18nContext.jsx";
 import { FilterSidebar } from "../components/catalog/FilterSidebar.jsx";
 import { ResultsBar } from "../components/catalog/ResultsBar.jsx";
 import { ProductGrid } from "../components/catalog/ProductGrid.jsx";
+import { ProductTable } from "../components/catalog/ProductTable.jsx";
 import { Pagination } from "../components/catalog/Pagination.jsx";
-import { ProductModal } from "../components/catalog/ProductModal.jsx";
+import { Breadcrumbs } from "../components/ui/Breadcrumbs.jsx";
 import { Drawer } from "../components/ui/Drawer.jsx";
 import { Button } from "../components/ui/Button.jsx";
 
 const VALID_SIZES = new Set([12, 24, 48]);
-const VALID_SORTS = new Set(["name", "brand"]);
-
-const productById = new Map(catalog.map((p) => [p.id, p]));
+const VALID_SORTS = new Set(["name", "brand", "np"]);
+const VALID_VIEWS = new Set(["grid", "table"]);
 
 export function Catalog() {
   const { t } = useI18n();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const resultsTopRef = useRef(null);
@@ -101,11 +102,29 @@ export function Catalog() {
   const rawSort = searchParams.get("sort") || "name";
   const sort = VALID_SORTS.has(rawSort) ? rawSort : "name";
 
+  const rawView = searchParams.get("view") || "grid";
+  const view = VALID_VIEWS.has(rawView) ? rawView : "grid";
+
   const rawPage = Number.parseInt(searchParams.get("page") || "1", 10);
   const pageParam = Number.isFinite(rawPage) && rawPage >= 1 ? rawPage : 1;
 
-  const openId = searchParams.get("open") || "";
-  const modalProduct = openId ? productById.get(openId) || null : null;
+  // Breadcrumbs items for Catalog
+  const breadcrumbItems = useMemo(() => {
+    const items = [
+      { label: t("navHome"), to: "/" },
+      { label: t("navCatalog"), to: cat ? "/catalogo" : undefined },
+    ];
+    if (cat) {
+      items.push({
+        label: cat,
+        to: sub ? `/catalogo?cat=${encodeURIComponent(cat)}` : undefined,
+      });
+    }
+    if (sub) {
+      items.push({ label: sub });
+    }
+    return items;
+  }, [t, cat, sub]);
 
   // Dynamic page title per Section 10
   const pageTitle = useMemo(() => {
@@ -159,6 +178,7 @@ export function Catalog() {
     if (next.get("page") === "1") next.delete("page");
     if (next.get("size") === "24") next.delete("size");
     if (next.get("sort") === "name") next.delete("sort");
+    if (next.get("view") === "grid") next.delete("view");
 
     setSearchParams(next);
   }
@@ -187,6 +207,7 @@ export function Catalog() {
     const next = new URLSearchParams();
     if (size !== 24) next.set("size", String(size));
     if (sort !== "name") next.set("sort", sort);
+    if (view !== "grid") next.set("view", view);
     setSearchParams(next);
   }
 
@@ -199,19 +220,17 @@ export function Catalog() {
     }
   }
 
-  function handleOpenModal(productId) {
-    updateParams({ open: productId }, { resetPage: false });
+  function handleViewChange(nextView) {
+    updateParams({ view: nextView }, { resetPage: false });
   }
 
-  function handleCloseModal() {
-    updateParams({ open: "" }, { resetPage: false });
-  }
-
+  const currentFromUrl = `${location.pathname}${location.search}`;
   const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div ref={resultsTopRef} className="mb-6">
+        <Breadcrumbs items={breadcrumbItems} />
         <h1 className="text-3xl font-bold text-brand-900 md:text-4xl">
           {t("catalogTitle")}
         </h1>
@@ -220,7 +239,7 @@ export function Catalog() {
 
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
         {/* Desktop Sidebar (w-72 on lg+) */}
-        <div className="hidden w-72 flex-shrink-0 rounded-lg border border-line bg-white p-5 lg:block">
+        <div className="hidden w-72 flex-shrink-0 rounded-xl border border-line bg-white p-5 lg:block shadow-sm">
           <FilterSidebar
             allCategories={allCategories}
             allBrands={allBrands}
@@ -272,6 +291,8 @@ export function Catalog() {
             brands={brands}
             size={size}
             sort={sort}
+            view={view}
+            onViewChange={handleViewChange}
             onSizeChange={(nextSize) =>
               updateParams({ size: nextSize }, { resetPage: true })
             }
@@ -288,10 +309,22 @@ export function Catalog() {
 
           {pagination.items.length > 0 ? (
             <>
-              <ProductGrid
-                products={pagination.items}
-                onOpenModal={handleOpenModal}
-              />
+              {view === "table" ? (
+                <ProductTable
+                  products={pagination.items}
+                  from={currentFromUrl}
+                  sort={sort}
+                  onSortChange={(nextSort) =>
+                    updateParams({ sort: nextSort }, { resetPage: true })
+                  }
+                />
+              ) : (
+                <ProductGrid
+                  products={pagination.items}
+                  from={currentFromUrl}
+                />
+              )}
+
               <Pagination
                 page={pagination.currentPage}
                 totalPages={pagination.totalPages}
@@ -330,12 +363,6 @@ export function Catalog() {
           )}
         </div>
       </div>
-
-      <ProductModal
-        product={modalProduct}
-        isOpen={Boolean(modalProduct)}
-        onClose={handleCloseModal}
-      />
     </div>
   );
 }

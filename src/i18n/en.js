@@ -16,12 +16,14 @@ export const en = {
   categoryLabel: "Category",
   subcategoryLabel: "Subcategory",
   addedToListAnnouncement: "Added to your quote list",
+  breadcrumbsAria: "Breadcrumbs",
 
   // Navigation
   navHome: "Home",
   navCatalog: "Catalog",
   navBrands: "Brands",
   navContact: "Contact",
+  navQuickOrder: "Quick Quote",
 
   // SearchBox
   searchPlaceholder: "Search by P/N, name or brand",
@@ -53,6 +55,7 @@ export const en = {
   contactStripHeading: "Need a quote for MRO supplies?",
   contactStripSub: "Direct assistance for industrial purchasing and maintenance teams.",
   callPhone: "Call {phone}",
+  clientsHeading: "Companies that trust our MRO solutions",
 
   // Catalog & Filters
   catalogTitle: "Industrial MRO Catalog",
@@ -73,6 +76,10 @@ export const en = {
   sortByLabel: "Sort by",
   sortByName: "Name (A–Z)",
   sortByBrand: "Brand (A–Z)",
+  sortByNp: "P/N (A–Z)",
+  viewToggleLabel: "View mode",
+  gridView: "Grid",
+  tableView: "Table",
   paginationAria: "Pagination",
   prevPage: "Previous page",
   nextPage: "Next page",
@@ -82,7 +89,7 @@ export const en = {
   expandCategoryAria: "Show subcategories for {category}",
   collapseCategoryAria: "Hide subcategories for {category}",
 
-  // Product Card & Modal
+  // Product Page & Details
   addToQuote: "+ Add to quote",
   inYourList: "In your list",
   decreaseQtyAria: "Decrease quantity of {name}",
@@ -91,6 +98,29 @@ export const en = {
   viewProductDetailsAria: "View details for {name}",
   modalProductDetails: "Product details",
   viewInCatalogCategory: "More in {category}",
+  copyNp: "Copy",
+  askAboutProduct: "Inquire about this product",
+  moreFromCategory: "More from this category",
+  backToResults: "← Back to results",
+
+  // Quick Order
+  quickOrderHeading: "Quick Quote",
+  quickOrderHelp: "Paste your list: one product per line, with P/N and quantity.",
+  quickOrderInputLabel: "Part numbers list",
+  uploadFileLabel: "Upload .csv or .txt file",
+  excelNote: "From Excel: copy columns and paste them here",
+  reviewListButton: "Review list",
+  maxLinesNotice: "Processed the first 200 lines. {extra} additional lines were omitted.",
+  quickOrderAnnouncement: "{n} found, {m} not found",
+  parsedResultsTitle: "List review results",
+  addFoundToQuote: "Add found items to quote list",
+  copyUnmatchedButton: "Copy not found",
+  askUnmatchedWhatsApp: "Request not found items via WhatsApp",
+  statusLabel: "Status",
+  statusFound: "Found",
+  statusAmbiguous: "Multiple matches",
+  statusNotFound: "Not found",
+  rfqQuickOrderPrompt: "Have a list of multiple parts? Use quick quote →",
 
   // Brands Page
   brandsPageTitle: "Brands in catalog",
@@ -160,6 +190,8 @@ export const en = {
   metaHomeDesc: "Find MRO products for industrial maintenance, repair, and operations.",
   metaCatalogTitle: "Industrial MRO Catalog | SERSE Industrial",
   metaCatalogDesc: "Search by part number, name, or brand and request your quote via WhatsApp.",
+  metaQuickOrderTitle: "Quick Quote | SERSE Industrial",
+  metaQuickOrderDesc: "Paste your list of part numbers and generate your quote in seconds.",
   metaBrandsTitle: "Brands | SERSE Industrial",
   metaBrandsDesc: "Industrial MRO supply brands available in the SERSE Industrial catalog.",
   metaContactTitle: "Contact | SERSE Industrial",

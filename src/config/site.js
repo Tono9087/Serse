@@ -8,4 +8,9 @@ export const SITE = {
   email: "",                         // UNKNOWN. If empty, never render any email text, link or mailto.
   privacyUrl: "",                    // If empty, do not render a privacy link.
   siteUrl: "https://gruposerse.com",
+  clients: [
+    { name: "Harman", logo: "/images/clients/harman.png" },
+    { name: "American Industries", logo: "/images/clients/american-industries.png" },
+    { name: "BWI Group", logo: "/images/clients/bwi-group.png" },
+  ],
 };

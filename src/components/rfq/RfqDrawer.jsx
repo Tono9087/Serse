@@ -1,9 +1,10 @@
 import { useId, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Check,
   ClipboardList,
   Copy,
+  FileText,
   Info,
   MessageSquare,
   Trash2,
@@ -119,16 +120,25 @@ export function RfqDrawer() {
             {t("rfqEmptyTitle")}
           </h3>
           <p className="mt-1.5 text-sm text-muted">{t("rfqEmptyDesc")}</p>
-          <Button
-            variant="primary"
-            className="mt-6"
-            onClick={() => {
-              close();
-              navigate("/catalogo");
-            }}
-          >
-            {t("viewCatalog")}
-          </Button>
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <Button
+              variant="primary"
+              onClick={() => {
+                close();
+                navigate("/catalogo");
+              }}
+            >
+              {t("viewCatalog")}
+            </Button>
+            <Link
+              to="/cotizacion-rapida"
+              onClick={close}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:underline"
+            >
+              <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{t("rfqQuickOrderPrompt")}</span>
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col divide-y divide-line">
@@ -184,6 +194,18 @@ export function RfqDrawer() {
                 />
               ))}
             </ul>
+
+            {/* Quick order link under item list per Section C.1 */}
+            <div className="mt-3 pt-3 border-t border-line text-center">
+              <Link
+                to="/cotizacion-rapida"
+                onClick={close}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:underline"
+              >
+                <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+                <span>{t("rfqQuickOrderPrompt")}</span>
+              </Link>
+            </div>
           </div>
 
           <form

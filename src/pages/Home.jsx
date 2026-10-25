@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -35,6 +35,63 @@ const CATEGORY_ICON_MAP = {
   "Mecánica y lubricación": Cog,
   "Seguridad industrial": ShieldAlert,
 };
+
+function ClientsSection() {
+  const { t } = useI18n();
+  const [loadedMap, setLoadedMap] = useState({});
+
+  if (!SITE.clients || SITE.clients.length === 0) return null;
+
+  const anyLoaded = Object.values(loadedMap).some(Boolean);
+
+  return (
+    <>
+      {/* Invisible test images to detect if local files exist */}
+      <div className="sr-only" aria-hidden="true">
+        {SITE.clients.map((client) => (
+          <img
+            key={`preload-${client.name}`}
+            src={client.logo}
+            alt=""
+            onLoad={() =>
+              setLoadedMap((prev) => ({ ...prev, [client.name]: true }))
+            }
+            onError={() =>
+              setLoadedMap((prev) => ({ ...prev, [client.name]: false }))
+            }
+          />
+        ))}
+      </div>
+
+      {anyLoaded && (
+        <section className="border-t border-line bg-white py-12">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center text-xs font-semibold uppercase tracking-wider text-muted">
+              {t("clientsHeading")}
+            </h2>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+              {SITE.clients.map((client) => {
+                if (!loadedMap[client.name]) return null;
+                return (
+                  <div
+                    key={client.name}
+                    className="flex h-16 items-center justify-center rounded-xl border border-line bg-lavender/40 px-6 py-2 shadow-xs"
+                  >
+                    <img
+                      src={client.logo}
+                      alt={client.name}
+                      className="max-h-10 w-auto object-contain"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
 
 export function Home() {
   const { t } = useI18n();
@@ -243,7 +300,10 @@ export function Home() {
         </div>
       </section>
 
-      {/* 5. Contact strip */}
+      {/* 5. Clients strip (Section D) */}
+      <ClientsSection />
+
+      {/* 6. Contact strip */}
       <section className="border-t border-line bg-lavender py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col justify-between gap-6 rounded-xl border border-line bg-white p-6 lg:flex-row lg:items-center">

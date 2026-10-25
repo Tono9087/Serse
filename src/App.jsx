@@ -4,6 +4,8 @@ import { RfqProvider } from "./context/RfqContext.jsx";
 import { Layout } from "./components/layout/Layout.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Catalog } from "./pages/Catalog.jsx";
+import { ProductPage } from "./pages/ProductPage.jsx";
+import { QuickOrder } from "./pages/QuickOrder.jsx";
 import { Brands } from "./pages/Brands.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
@@ -17,6 +19,8 @@ export default function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/catalogo" element={<Catalog />} />
+              <Route path="/producto/:id" element={<ProductPage />} />
+              <Route path="/cotizacion-rapida" element={<QuickOrder />} />
               <Route path="/marcas" element={<Brands />} />
               <Route path="/contacto" element={<Contact />} />
               <Route path="*" element={<NotFound />} />

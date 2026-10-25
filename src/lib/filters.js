@@ -38,6 +38,18 @@ function compareByBrand(a, b) {
   return compareByName(a, b);
 }
 
+function compareByNp(a, b) {
+  const aNorm = normalizeNp(a.np);
+  const bNorm = normalizeNp(b.np);
+  if (aNorm && !bNorm) return -1;
+  if (!aNorm && bNorm) return 1;
+  if (aNorm && bNorm) {
+    const cmp = aNorm.localeCompare(bNorm, "es");
+    if (cmp !== 0) return cmp;
+  }
+  return compareByName(a, b);
+}
+
 function getNpMatchTier(product, qNp) {
   if (!qNp || qNp.length < 2) return 3;
   const npNorm = normalizeNp(product.np);
@@ -78,6 +90,8 @@ export function applyFilters(products = [], filters = {}) {
 
   if (sort === "brand") {
     result.sort(compareByBrand);
+  } else if (sort === "np") {
+    result.sort(compareByNp);
   } else if (sort === "name" || !trimmedQ) {
     if (trimmedQ && qNp.length >= 2) {
       result.sort((a, b) => {
@@ -139,7 +153,6 @@ export function facetCounts(products = [], filters = {}) {
   }
 
   // 2. Subcategory counts: apply q + cat + brands (ignore sub)
-  // Also populate subcategoriesByCategory across all categories (with q + brands)
   for (const p of forCategories) {
     if (p.category && p.subcategory) {
       subcategoriesByCategory[p.category][p.subcategory] =

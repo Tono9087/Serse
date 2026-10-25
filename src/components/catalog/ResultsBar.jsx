@@ -1,4 +1,4 @@
-import { SlidersHorizontal } from "lucide-react";
+import { LayoutGrid, List, SlidersHorizontal } from "lucide-react";
 import { useI18n } from "../../i18n/I18nContext.jsx";
 import { Button } from "../ui/Button.jsx";
 import { ActiveFilters } from "./ActiveFilters.jsx";
@@ -11,6 +11,8 @@ export function ResultsBar({
   brands,
   size,
   sort,
+  view = "grid",
+  onViewChange,
   onSizeChange,
   onSortChange,
   onRemoveQ,
@@ -26,7 +28,7 @@ export function ResultsBar({
     (q ? 1 : 0) + (cat ? 1 : 0) + (sub ? 1 : 0) + (brands?.length || 0);
 
   return (
-    <div className="mb-6 rounded-lg border border-line bg-white p-3.5 sm:px-4">
+    <div className="mb-6 rounded-xl border border-line bg-white p-3.5 sm:px-4 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <Button
@@ -56,6 +58,42 @@ export function ResultsBar({
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
+          {/* Segmented view toggle: Grid | Table */}
+          <div
+            role="group"
+            aria-label={t("viewToggleLabel")}
+            className="inline-flex items-center rounded-lg border border-line bg-lavender/50 p-0.5 text-xs"
+          >
+            <button
+              type="button"
+              onClick={() => onViewChange("grid")}
+              aria-pressed={view === "grid"}
+              aria-label={t("gridView")}
+              className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-semibold transition duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 ${
+                view === "grid"
+                  ? "bg-brand-700 text-white shadow-xs"
+                  : "text-muted hover:text-brand-900"
+              }`}
+            >
+              <LayoutGrid className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="hidden sm:inline">{t("gridView")}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onViewChange("table")}
+              aria-pressed={view === "table"}
+              aria-label={t("tableView")}
+              className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-semibold transition duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 ${
+                view === "table"
+                  ? "bg-brand-700 text-white shadow-xs"
+                  : "text-muted hover:text-brand-900"
+              }`}
+            >
+              <List className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="hidden sm:inline">{t("tableView")}</span>
+            </button>
+          </div>
+
           {/* Page size select */}
           <div className="flex items-center gap-2 text-xs text-muted">
             <label htmlFor="catalog-page-size" className="font-medium">
@@ -73,7 +111,7 @@ export function ResultsBar({
             </select>
           </div>
 
-          {/* Sort select */}
+          {/* Sort select with N/P included */}
           <div className="flex items-center gap-2 text-xs text-muted">
             <label htmlFor="catalog-sort" className="font-medium">
               {t("sortByLabel")}:
@@ -86,6 +124,7 @@ export function ResultsBar({
             >
               <option value="name">{t("sortByName")}</option>
               <option value="brand">{t("sortByBrand")}</option>
+              <option value="np">{t("sortByNp")}</option>
             </select>
           </div>
         </div>

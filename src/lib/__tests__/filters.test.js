@@ -26,6 +26,18 @@ describe("applyFilters and facetCounts", () => {
     expect(results[2].brand).toBeNull();
   });
 
+  it("sorts by np with null part numbers last", () => {
+    const sample = [
+      { id: "1", name: "Alpha", np: null },
+      { id: "2", name: "Beta", np: "PUC 10" },
+      { id: "3", name: "Gamma", np: "07150-03005" },
+      { id: "4", name: "Delta", np: "AC20A-N02CG-Z" },
+    ];
+    const sorted = applyFilters(sample, { sort: "np" });
+    expect(sorted.map((p) => p.id)).toEqual(["3", "4", "2", "1"]);
+    expect(sorted[3].np).toBeNull();
+  });
+
   it("computes facet counts reflecting other active filters and excludes null brands", () => {
     const facets = facetCounts(catalog, {
       cat: "Neumática",

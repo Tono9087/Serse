@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Search, X } from "lucide-react";
 import catalog from "../../data/catalog.json";
 import { buildSearchIndex, search } from "../../lib/search.js";
@@ -56,6 +56,7 @@ function HighlightedNp({ np, query }) {
 export function SearchBox({ size = "md", initialValue = "", className = "" }) {
   const { t } = useI18n();
   const navigate = useNavigate();
+  const location = useLocation();
   const baseId = useId();
   const listboxId = `${baseId}-listbox`;
 
@@ -109,13 +110,8 @@ export function SearchBox({ size = "md", initialValue = "", className = "" }) {
   function selectSuggestion(product) {
     setIsOpen(false);
     setActiveIndex(-1);
-    const qParam = product.np || product.name;
-    setQuery(qParam);
-    navigate(
-      `/catalogo?q=${encodeURIComponent(qParam)}&open=${encodeURIComponent(
-        product.id
-      )}`
-    );
+    const fromPath = `${location.pathname}${location.search}`;
+    navigate(`/producto/${product.id}`, { state: { from: fromPath } });
   }
 
   function handleKeyDown(e) {
