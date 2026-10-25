@@ -74,6 +74,7 @@ export const en = {
   pageSizeLabel: "Show",
   perPageSuffix: "per page",
   sortByLabel: "Sort by",
+  sortByRelevance: "Relevance",
   sortByName: "Name (A–Z)",
   sortByBrand: "Brand (A–Z)",
   sortByNp: "P/N (A–Z)",
@@ -106,6 +107,7 @@ export const en = {
   // Quick Order
   quickOrderHeading: "Quick Quote",
   quickOrderHelp: "Paste your list: one product per line, with P/N and quantity.",
+  quickOrderDelimiterHint: "If your P/N includes a space or dash before the quantity, separate them with a comma, for example: WAX104, 457.",
   quickOrderInputLabel: "Part numbers list",
   uploadFileLabel: "Upload .csv or .txt file",
   excelNote: "From Excel: copy columns and paste them here",

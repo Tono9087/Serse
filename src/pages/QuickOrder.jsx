@@ -165,6 +165,9 @@ export function QuickOrder() {
           placeholder={EXAMPLE_PLACEHOLDER}
           className="mt-2 w-full rounded-xl border border-line bg-white p-4 font-mono text-sm text-ink placeholder:text-muted/60 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-700"
         />
+        <p className="mt-1.5 text-xs text-muted">
+          {t("quickOrderDelimiterHint")}
+        </p>
 
         <div className="mt-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex flex-wrap items-center gap-2">

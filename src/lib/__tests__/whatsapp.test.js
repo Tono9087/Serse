@@ -51,4 +51,58 @@ describe("whatsapp message builder", () => {
     expect(url.startsWith("https://wa.me/5216145341188?text=")).toBe(true);
     expect(decodeURIComponent(url.split("?text=")[1])).toBe(msg);
   });
+
+  it("renders 'no especificada' for null brand and 'por confirmar' for null N/P", () => {
+    const msg = buildQuoteMessage({
+      customer: {
+        nombre: "Test User",
+        empresa: "Test Corp",
+        correo: "test@example.com",
+      },
+      lines: [
+        {
+          name: "Producto de prueba",
+          brand: null,
+          np: null,
+          qty: 1,
+        },
+      ],
+    });
+
+    expect(msg).toContain("- Marca: no especificada");
+    expect(msg).toContain("- N/P: por confirmar");
+  });
+
+  it("strips * and _ from customer fields", () => {
+    const msg = buildQuoteMessage({
+      customer: {
+        nombre: "*Juan* _Pérez_*",
+        empresa: "Empresa_*_Test",
+        correo: "correo_*_@test.com",
+        telefono: "123*456_789",
+        notas: "*Nota* _importante_*",
+      },
+      lines: [
+        {
+          name: "Producto 1",
+          brand: "Marca",
+          np: "NP-01",
+          qty: 1,
+        },
+      ],
+    });
+
+    expect(msg).toContain("*Cliente:* Juan Pérez");
+    expect(msg).toContain("*Empresa:* EmpresaTest");
+    expect(msg).toContain("*Correo:* correo@test.com");
+    expect(msg).toContain("*Teléfono:* 123456789");
+    expect(msg).toContain("*Notas:* Nota importante");
+  });
+
+  it("round-trips the encoded URL with decodeURIComponent", () => {
+    const rawMessage = "Línea 1: *Negritas*\nLínea 2: &?=% café 100% / #123";
+    const url = buildWhatsAppUrl("5216145341188", rawMessage);
+    const encodedText = url.split("?text=")[1];
+    expect(decodeURIComponent(encodedText)).toBe(rawMessage);
+  });
 });

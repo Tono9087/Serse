@@ -74,6 +74,7 @@ export const es = {
   pageSizeLabel: "Mostrar",
   perPageSuffix: "por página",
   sortByLabel: "Ordenar por",
+  sortByRelevance: "Relevancia",
   sortByName: "Nombre (A–Z)",
   sortByBrand: "Marca (A–Z)",
   sortByNp: "N/P (A–Z)",
@@ -106,6 +107,7 @@ export const es = {
   // Quick Order
   quickOrderHeading: "Cotización rápida",
   quickOrderHelp: "Pega tu lista: un producto por renglón, con N/P y cantidad.",
+  quickOrderDelimiterHint: "Si tu N/P incluye un espacio o guion antes de la cantidad, sepáralos con coma, por ejemplo: WAX104, 457.",
   quickOrderInputLabel: "Lista de números de parte",
   uploadFileLabel: "Cargar archivo .csv o .txt",
   excelNote: "Desde Excel: copia las columnas y pégalas aquí",

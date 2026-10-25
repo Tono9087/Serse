@@ -1,10 +1,34 @@
 import { Link, useLocation } from "react-router-dom";
-import { Check, Minus, Plus } from "lucide-react";
+import {
+  Check,
+  Cog,
+  Cpu,
+  Gauge,
+  Minus,
+  Package,
+  PackageCheck,
+  Plus,
+  ShieldAlert,
+  Tag,
+  Wind,
+  Wrench,
+} from "lucide-react";
 import { useRfq } from "../../context/RfqContext.jsx";
 import { useI18n } from "../../i18n/I18nContext.jsx";
 import { Badge } from "../ui/Badge.jsx";
 import { Button } from "../ui/Button.jsx";
 import { ProductImage } from "../ui/ProductImage.jsx";
+
+const CATEGORY_ICON_MAP = {
+  Herramienta: Wrench,
+  Neumática: Wind,
+  "Mantenimiento y consumibles": PackageCheck,
+  "Eléctrico y electrónica": Cpu,
+  "Etiquetado e identificación": Tag,
+  Medición: Gauge,
+  "Mecánica y lubricación": Cog,
+  "Seguridad industrial": ShieldAlert,
+};
 
 export function ProductCard({ product, from }) {
   const { getQty, add, setQty, remove } = useRfq();
@@ -14,101 +38,193 @@ export function ProductCard({ product, from }) {
   const qty = getQty(product.id);
   const inList = qty > 0;
   const fromState = from ?? `${location.pathname}${location.search}`;
+  const hasImage = Boolean(product.image);
+  const CategoryIcon = CATEGORY_ICON_MAP[product.category] || Package;
 
   return (
     <article className="flex flex-col rounded-xl border border-line bg-white transition duration-150 hover:border-brand-700 hover:shadow-sm">
-      {/* 1. Image area (aspect 4/3, bg-lavender) as Link */}
-      <Link
-        to={`/producto/${product.id}`}
-        state={{ from: fromState }}
-        aria-label={t("viewProductDetailsAria", { name: product.name })}
-        className="group relative aspect-[4/3] w-full overflow-hidden rounded-t-xl bg-lavender p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-700"
-      >
-        <ProductImage
-          src={product.image}
-          alt={product.name}
-          width={400}
-          height={300}
-          className="h-full w-full transition duration-150 group-hover:scale-105"
-        />
-      </Link>
-
-      <div className="flex flex-1 flex-col p-4">
-        {/* 2. Brand badge (if any; hidden when brand === null) */}
-        <div className="min-h-[24px]">
-          {product.brand && <Badge variant="brand">{product.brand}</Badge>}
-        </div>
-
-        {/* 3. Name (2-line clamp) as Link */}
-        <h3 className="mt-1.5 text-base font-semibold text-brand-900 leading-snug">
+      {hasImage ? (
+        <>
+          {/* 1. Image area (aspect 4/3, bg-lavender) as Link */}
           <Link
             to={`/producto/${product.id}`}
             state={{ from: fromState }}
-            className="line-clamp-2 text-left hover:text-brand-700 focus:outline-none focus-visible:underline"
+            aria-label={t("viewProductDetailsAria", { name: product.name })}
+            className="group relative aspect-[4/3] w-full overflow-hidden rounded-t-xl bg-lavender p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-700"
           >
-            {product.name}
+            <ProductImage
+              src={product.image}
+              alt={product.name}
+              width={400}
+              height={300}
+              className="h-full w-full transition duration-150 group-hover:scale-105"
+            />
           </Link>
-        </h3>
 
-        {/* 4. N/P in monospace */}
-        <p className="mt-2 text-xs font-mono text-muted">
-          {product.np ? (
-            <>
-              <span>{t("npLabel")} </span>
-              <code className="font-semibold text-ink">{product.np}</code>
-            </>
-          ) : (
-            <span>{t("npPending")}</span>
-          )}
-        </p>
-
-        {/* 5. Action area pushed to bottom */}
-        <div className="mt-auto pt-4">
-          {!inList ? (
-            <Button
-              variant="primary"
-              className="w-full"
-              onClick={() => add(product.id, 1)}
-            >
-              {t("addToQuote")}
-            </Button>
-          ) : (
-            <div className="flex items-center justify-between gap-2 rounded-lg border border-brand-700/40 bg-lavender px-2.5 py-1">
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-900">
-                <Check className="h-3.5 w-3.5 text-success" aria-hidden="true" />
-                {t("inYourList")}
-              </span>
-              <div className="inline-flex items-center rounded border border-line bg-white">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (qty <= 1) {
-                      remove(product.id);
-                    } else {
-                      setQty(product.id, qty - 1);
-                    }
-                  }}
-                  aria-label={t("decreaseQtyAria", { name: product.name })}
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-l text-brand-900 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
-                >
-                  <Minus className="h-3.5 w-3.5" aria-hidden="true" />
-                </button>
-                <span className="min-w-[2.25rem] px-1 text-center text-sm font-bold text-brand-900 font-mono">
-                  {qty}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setQty(product.id, Math.min(9999, qty + 1))}
-                  aria-label={t("increaseQtyAria", { name: product.name })}
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-r text-brand-900 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
-                >
-                  <Plus className="h-3.5 w-3.5" aria-hidden="true" />
-                </button>
-              </div>
+          <div className="flex flex-1 flex-col p-4">
+            {/* 2. Brand badge (if any; hidden when brand === null) */}
+            <div className="min-h-[24px]">
+              {product.brand && <Badge variant="brand">{product.brand}</Badge>}
             </div>
-          )}
+
+            {/* 3. Name (2-line clamp) as Link */}
+            <h3 className="mt-1.5 text-base font-semibold text-brand-900 leading-snug">
+              <Link
+                to={`/producto/${product.id}`}
+                state={{ from: fromState }}
+                className="line-clamp-2 text-left hover:text-brand-700 focus:outline-none focus-visible:underline"
+              >
+                {product.name}
+              </Link>
+            </h3>
+
+            {/* 4. N/P in monospace */}
+            <p className="mt-2 text-xs font-mono text-muted">
+              {product.np ? (
+                <>
+                  <span>{t("npLabel")} </span>
+                  <code className="font-semibold text-ink">{product.np}</code>
+                </>
+              ) : (
+                <span>{t("npPending")}</span>
+              )}
+            </p>
+
+            {/* 5. Action area pushed to bottom */}
+            <div className="mt-auto pt-4">
+              {!inList ? (
+                <Button
+                  variant="primary"
+                  className="w-full"
+                  onClick={() => add(product.id, 1)}
+                >
+                  {t("addToQuote")}
+                </Button>
+              ) : (
+                <div className="flex items-center justify-between gap-2 rounded-lg border border-brand-700/40 bg-lavender px-2.5 py-1">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-900">
+                    <Check className="h-3.5 w-3.5 text-success" aria-hidden="true" />
+                    {t("inYourList")}
+                  </span>
+                  <div className="inline-flex items-center rounded border border-line bg-white">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (qty <= 1) {
+                          remove(product.id);
+                        } else {
+                          setQty(product.id, qty - 1);
+                        }
+                      }}
+                      aria-label={t("decreaseQtyAria", { name: product.name })}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-l text-brand-900 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                    >
+                      <Minus className="h-3.5 w-3.5" aria-hidden="true" />
+                    </button>
+                    <span className="min-w-[2.25rem] px-1 text-center text-sm font-bold text-brand-900 font-mono">
+                      {qty}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQty(product.id, Math.min(9999, qty + 1))}
+                      aria-label={t("increaseQtyAria", { name: product.name })}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-r text-brand-900 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                    >
+                      <Plus className="h-3.5 w-3.5" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      ) : (
+        /* Text-first compact layout when image is null */
+        <div className="flex flex-1 flex-col p-4">
+          {/* Category icon and brand badge */}
+          <div className="flex items-center justify-between gap-2 min-h-[36px]">
+            <Link
+              to={`/producto/${product.id}`}
+              state={{ from: fromState }}
+              aria-label={t("viewProductDetailsAria", { name: product.name })}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-lavender text-brand-700 transition hover:bg-brand-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+            >
+              <CategoryIcon className="h-5 w-5" aria-hidden="true" />
+            </Link>
+            {product.brand && <Badge variant="brand">{product.brand}</Badge>}
+          </div>
+
+          {/* Name (2-line clamp) as Link */}
+          <h3 className="mt-3 text-base font-semibold text-brand-900 leading-snug">
+            <Link
+              to={`/producto/${product.id}`}
+              state={{ from: fromState }}
+              className="line-clamp-2 text-left hover:text-brand-700 focus:outline-none focus-visible:underline"
+            >
+              {product.name}
+            </Link>
+          </h3>
+
+          {/* N/P in monospace */}
+          <p className="mt-2 text-xs font-mono text-muted">
+            {product.np ? (
+              <>
+                <span>{t("npLabel")} </span>
+                <code className="font-semibold text-ink">{product.np}</code>
+              </>
+            ) : (
+              <span>{t("npPending")}</span>
+            )}
+          </p>
+
+          {/* Action area pushed to bottom */}
+          <div className="mt-auto pt-4">
+            {!inList ? (
+              <Button
+                variant="primary"
+                className="w-full"
+                onClick={() => add(product.id, 1)}
+              >
+                {t("addToQuote")}
+              </Button>
+            ) : (
+              <div className="flex items-center justify-between gap-2 rounded-lg border border-brand-700/40 bg-lavender px-2.5 py-1">
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-900">
+                  <Check className="h-3.5 w-3.5 text-success" aria-hidden="true" />
+                  {t("inYourList")}
+                </span>
+                <div className="inline-flex items-center rounded border border-line bg-white">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (qty <= 1) {
+                        remove(product.id);
+                      } else {
+                        setQty(product.id, qty - 1);
+                      }
+                    }}
+                    aria-label={t("decreaseQtyAria", { name: product.name })}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-l text-brand-900 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                  >
+                    <Minus className="h-3.5 w-3.5" aria-hidden="true" />
+                  </button>
+                  <span className="min-w-[2.25rem] px-1 text-center text-sm font-bold text-brand-900 font-mono">
+                    {qty}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setQty(product.id, Math.min(9999, qty + 1))}
+                    aria-label={t("increaseQtyAria", { name: product.name })}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-r text-brand-900 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                  >
+                    <Plus className="h-3.5 w-3.5" aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </article>
   );
 }

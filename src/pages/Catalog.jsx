@@ -18,7 +18,7 @@ import { Drawer } from "../components/ui/Drawer.jsx";
 import { Button } from "../components/ui/Button.jsx";
 
 const VALID_SIZES = new Set([12, 24, 48]);
-const VALID_SORTS = new Set(["name", "brand", "np"]);
+const VALID_SORTS = new Set(["relevance", "name", "brand", "np"]);
 const VALID_VIEWS = new Set(["grid", "table"]);
 
 export function Catalog() {
@@ -99,8 +99,12 @@ export function Catalog() {
   const rawSize = Number.parseInt(searchParams.get("size") || "24", 10);
   const size = VALID_SIZES.has(rawSize) ? rawSize : 24;
 
-  const rawSort = searchParams.get("sort") || "name";
-  const sort = VALID_SORTS.has(rawSort) ? rawSort : "name";
+  const rawSort = searchParams.get("sort");
+  const defaultSort = q ? "relevance" : "name";
+  let sort = rawSort && VALID_SORTS.has(rawSort) ? rawSort : defaultSort;
+  if (!q && sort === "relevance") {
+    sort = "name";
+  }
 
   const rawView = searchParams.get("view") || "grid";
   const view = VALID_VIEWS.has(rawView) ? rawView : "grid";
@@ -177,8 +181,16 @@ export function Catalog() {
 
     if (next.get("page") === "1") next.delete("page");
     if (next.get("size") === "24") next.delete("size");
-    if (next.get("sort") === "name") next.delete("sort");
     if (next.get("view") === "grid") next.delete("view");
+
+    const currentQ = next.get("q")?.trim();
+    const currentDefaultSort = currentQ ? "relevance" : "name";
+    if (next.get("sort") === currentDefaultSort) {
+      next.delete("sort");
+    }
+    if (!currentQ && next.get("sort") === "relevance") {
+      next.delete("sort");
+    }
 
     setSearchParams(next);
   }
@@ -206,7 +218,7 @@ export function Catalog() {
   function handleClearAll() {
     const next = new URLSearchParams();
     if (size !== 24) next.set("size", String(size));
-    if (sort !== "name") next.set("sort", sort);
+    if (sort !== "name" && sort !== "relevance") next.set("sort", sort);
     if (view !== "grid") next.set("view", view);
     setSearchParams(next);
   }

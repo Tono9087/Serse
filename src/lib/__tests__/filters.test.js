@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import catalog from "../../data/catalog.json";
 import { applyFilters, facetCounts } from "../filters.js";
+import { search } from "../search.js";
 
 describe("applyFilters and facetCounts", () => {
   it("returns the expected subset for category + brand combination", () => {
@@ -36,6 +37,28 @@ describe("applyFilters and facetCounts", () => {
     const sorted = applyFilters(sample, { sort: "np" });
     expect(sorted.map((p) => p.id)).toEqual(["3", "4", "2", "1"]);
     expect(sorted[3].np).toBeNull();
+  });
+
+  it("keeps search() order for query 'cilindro' with relevance sort", () => {
+    const expected = search("cilindro", catalog);
+    const results = applyFilters(catalog, { q: "cilindro", sort: "relevance" });
+    expect(results.length).toBe(expected.length);
+    expect(results.map((p) => p.id)).toEqual(expected.map((p) => p.id));
+
+    // Also verify default when sort is omitted with q
+    const defaultSortResults = applyFilters(catalog, { q: "cilindro" });
+    expect(defaultSortResults.map((p) => p.id)).toEqual(expected.map((p) => p.id));
+  });
+
+  it("prioritizes exact N/P hits first with relevance sort", () => {
+    const sample = [
+      { id: "p-name-1", name: "Cilindro neumático doble efecto", np: "OTHER-01" },
+      { id: "p-exact-np", name: "Válvula y actuador", np: "CILINDRO" },
+      { id: "p-name-2", name: "Cilindro compacto", np: "OTHER-02" },
+    ];
+    const results = applyFilters(sample, { q: "cilindro", sort: "relevance" });
+    expect(results[0].id).toBe("p-exact-np");
+    expect(results[0].np).toBe("CILINDRO");
   });
 
   it("computes facet counts reflecting other active filters and excludes null brands", () => {

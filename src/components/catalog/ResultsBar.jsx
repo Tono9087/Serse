@@ -122,6 +122,9 @@ export function ResultsBar({
               onChange={(e) => onSortChange(e.target.value)}
               className="min-h-[38px] rounded-lg border border-line bg-white px-2.5 py-1.5 text-xs font-medium text-brand-900 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-700"
             >
+              {q ? (
+                <option value="relevance">{t("sortByRelevance")}</option>
+              ) : null}
               <option value="name">{t("sortByName")}</option>
               <option value="brand">{t("sortByBrand")}</option>
               <option value="np">{t("sortByNp")}</option>

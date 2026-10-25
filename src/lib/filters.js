@@ -50,16 +50,6 @@ function compareByNp(a, b) {
   return compareByName(a, b);
 }
 
-function getNpMatchTier(product, qNp) {
-  if (!qNp || qNp.length < 2) return 3;
-  const npNorm = normalizeNp(product.np);
-  if (!npNorm) return 3;
-  if (npNorm === qNp) return 0;
-  if (npNorm.startsWith(qNp)) return 1;
-  if (npNorm.includes(qNp)) return 2;
-  return 3;
-}
-
 /**
  * Applies category -> subcategory -> brands -> text -> sort filters.
  * @param {Array<Object>} products
@@ -68,7 +58,7 @@ function getNpMatchTier(product, qNp) {
  */
 export function applyFilters(products = [], filters = {}) {
   if (!Array.isArray(products)) return [];
-  const { q = "", cat = "", sub = "", brands, brand, sort = "name" } = filters;
+  const { q = "", cat = "", sub = "", brands, brand, sort } = filters;
   const activeBrands = normalizeBrandsFilter(brands, brand);
   const brandSet = activeBrands.length > 0 ? new Set(activeBrands) : null;
 
@@ -86,21 +76,16 @@ export function applyFilters(products = [], filters = {}) {
     result = [...result];
   }
 
-  const qNp = trimmedQ ? normalizeNp(trimmedQ) : "";
+  const effectiveSort = sort || (trimmedQ ? "relevance" : "name");
 
-  if (sort === "brand") {
+  if (effectiveSort === "brand") {
     result.sort(compareByBrand);
-  } else if (sort === "np") {
+  } else if (effectiveSort === "np") {
     result.sort(compareByNp);
-  } else if (sort === "name" || !trimmedQ) {
-    if (trimmedQ && qNp.length >= 2) {
-      result.sort((a, b) => {
-        const tierA = getNpMatchTier(a, qNp);
-        const tierB = getNpMatchTier(b, qNp);
-        if (tierA !== tierB) return tierA - tierB;
-        return compareByName(a, b);
-      });
-    } else {
+  } else if (effectiveSort === "name") {
+    result.sort(compareByName);
+  } else if (effectiveSort === "relevance") {
+    if (!trimmedQ) {
       result.sort(compareByName);
     }
   }
