@@ -16,6 +16,7 @@ import { Pagination } from "../components/catalog/Pagination.jsx";
 import { Breadcrumbs } from "../components/ui/Breadcrumbs.jsx";
 import { Drawer } from "../components/ui/Drawer.jsx";
 import { Button } from "../components/ui/Button.jsx";
+import { Container } from "../components/layout/Container.jsx";
 
 const VALID_SIZES = new Set([12, 24, 48]);
 const VALID_SORTS = new Set(["relevance", "name", "brand", "np"]);
@@ -240,7 +241,7 @@ export function Catalog() {
   const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <Container className="py-8">
       <div ref={resultsTopRef} className="mb-6">
         <Breadcrumbs items={breadcrumbItems} />
         <h1 className="text-3xl font-bold text-brand-900 md:text-4xl">
@@ -250,8 +251,8 @@ export function Catalog() {
       </div>
 
       <div className="flex flex-col gap-8 lg:flex-row lg:items-start">
-        {/* Desktop Sidebar (w-72 on lg+) */}
-        <div className="hidden w-72 flex-shrink-0 rounded-xl border border-line bg-white p-5 lg:block shadow-sm">
+        {/* Desktop Sidebar (w-72 on lg, w-80 on 2xl) */}
+        <div className="hidden w-72 2xl:w-80 flex-shrink-0 rounded-xl border border-line bg-white p-5 lg:block shadow-sm">
           <FilterSidebar
             allCategories={allCategories}
             allBrands={allBrands}
@@ -375,6 +376,6 @@ export function Catalog() {
           )}
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

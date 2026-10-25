@@ -5,6 +5,7 @@ import { useRfq } from "../context/RfqContext.jsx";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { Button } from "../components/ui/Button.jsx";
+import { Container } from "../components/layout/Container.jsx";
 
 export function Contact() {
   const { t } = useI18n();
@@ -19,7 +20,7 @@ export function Contact() {
   const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Container className="py-10">
       <div className="max-w-3xl">
         <h1 className="text-3xl font-bold text-brand-900 md:text-4xl">
           {t("contactPageTitle")}
@@ -145,6 +146,6 @@ export function Contact() {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

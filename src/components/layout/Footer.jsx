@@ -4,6 +4,7 @@ import { SITE } from "../../config/site.js";
 import { buildGenericGreetingUrl } from "../../lib/whatsapp.js";
 import { useI18n } from "../../i18n/I18nContext.jsx";
 import { LogoLockup } from "./Header.jsx";
+import { Container } from "./Container.jsx";
 
 export function Footer() {
   const { t } = useI18n();
@@ -13,7 +14,7 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-950 text-white border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <Container className="py-10">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Brand column */}
           <div>
@@ -129,7 +130,7 @@ export function Footer() {
             </a>
           )}
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

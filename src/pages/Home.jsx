@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  ClipboardList,
   Cog,
   Cpu,
   Gauge,
@@ -12,7 +11,6 @@ import {
   Package,
   PackageCheck,
   Phone,
-  Search,
   ShieldAlert,
   Tag,
   Wind,
@@ -24,6 +22,7 @@ import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { SearchBox } from "../components/search/SearchBox.jsx";
+import { Container } from "../components/layout/Container.jsx";
 
 const CATEGORY_ICON_MAP = {
   Herramienta: Wrench,
@@ -65,7 +64,7 @@ function ClientsSection() {
 
       {anyLoaded && (
         <section className="border-t border-line bg-white py-12">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Container>
             <h2 className="text-center text-xs font-semibold uppercase tracking-wider text-muted">
               {t("clientsHeading")}
             </h2>
@@ -86,7 +85,7 @@ function ClientsSection() {
                 );
               })}
             </div>
-          </div>
+          </Container>
         </section>
       )}
     </>
@@ -132,9 +131,9 @@ export function Home() {
 
   return (
     <div>
-      {/* 1. Hero (bg-gradient from-brand-950 via-brand-900 to-brand-700) */}
-      <section className="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-700 py-14 text-white sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* 1. Hero (reduced vertical padding, full-bleed with Container) */}
+      <section className="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-700 py-12 text-white sm:py-16">
+        <Container>
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
               {SITE.name} · {SITE.badge}
@@ -150,7 +149,7 @@ export function Home() {
               <SearchBox size="lg" />
             </div>
 
-            {/* Hero and CTA buttons use rounded-full */}
+            {/* Hero and CTA buttons */}
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link
                 to="/catalogo"
@@ -173,12 +172,12 @@ export function Home() {
               )}
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* 2. Categories grid */}
+      {/* 2. Categories grid: 2 cols mobile, 4 on lg, keep 4 on 2xl */}
       <section className="py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
             <div>
               <h2 className="text-2xl font-semibold text-brand-900">
@@ -197,20 +196,20 @@ export function Home() {
             </Link>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {categories.map((cat) => {
               const IconComponent = CATEGORY_ICON_MAP[cat.name] || Package;
               return (
                 <Link
                   key={cat.name}
                   to={`/catalogo?cat=${encodeURIComponent(cat.name)}`}
-                  className="group flex items-start gap-4 rounded-xl border border-line bg-white p-5 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
+                  className="group flex items-start gap-4 rounded-xl border border-line bg-white p-4 sm:p-5 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
                 >
                   <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lavender text-brand-900 group-hover:bg-gradient-to-r group-hover:from-brand-700 group-hover:to-brand-500 group-hover:text-white transition duration-150">
                     <IconComponent className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-semibold text-brand-900 group-hover:text-brand-700">
+                    <h3 className="text-sm sm:text-base font-semibold text-brand-900 group-hover:text-brand-700 line-clamp-2">
                       {cat.name}
                     </h3>
                     <p className="mt-1 text-xs font-mono text-muted">
@@ -223,53 +222,12 @@ export function Home() {
               );
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* 3. How to quote (3 steps) */}
-      <section className="border-y border-line bg-lavender py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-semibold text-brand-900">
-            {t("howToQuoteHeading")}
-          </h2>
-
-          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-line bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-900 text-white">
-                <Search className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-brand-900">
-                {t("step1Title")}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted">{t("step1Desc")}</p>
-            </div>
-
-            <div className="rounded-xl border border-line bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-900 text-white">
-                <ClipboardList className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-brand-900">
-                {t("step2Title")}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted">{t("step2Desc")}</p>
-            </div>
-
-            <div className="rounded-xl border border-line bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-900 text-white">
-                <MessageSquare className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <h3 className="mt-4 text-lg font-semibold text-brand-900">
-                {t("step3Title")}
-              </h3>
-              <p className="mt-1.5 text-sm text-muted">{t("step3Desc")}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Brands strip */}
+      {/* 3. Brands strip (wraps naturally) */}
       <section className="py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
             <h2 className="text-2xl font-semibold text-brand-900">
               {t("brandsHeading")}
@@ -297,15 +255,15 @@ export function Home() {
               </Link>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* 5. Clients strip (Section D) */}
+      {/* 4. Clients strip (Section D) */}
       <ClientsSection />
 
-      {/* 6. Contact strip */}
+      {/* 5. Contact strip */}
       <section className="border-t border-line bg-lavender py-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="flex flex-col justify-between gap-6 rounded-xl border border-line bg-white p-6 lg:flex-row lg:items-center">
             <div>
               <h2 className="text-2xl font-semibold text-brand-900">
@@ -354,7 +312,7 @@ export function Home() {
               )}
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </div>
   );

@@ -20,6 +20,7 @@ import { Badge } from "../components/ui/Badge.jsx";
 import { Button } from "../components/ui/Button.jsx";
 import { ProductImage } from "../components/ui/ProductImage.jsx";
 import { ProductCard } from "../components/catalog/ProductCard.jsx";
+import { Container } from "../components/layout/Container.jsx";
 import { NotFound } from "./NotFound.jsx";
 
 const productById = new Map(catalog.map((p) => [p.id, p]));
@@ -30,41 +31,32 @@ export function ProductPage() {
   const { t } = useI18n();
   const { getQty, add, setQty, remove } = useRfq();
 
-  const [copied, setCopied] = useState(false);
+  const product = productById.get(id);
 
-  const product = useMemo(() => {
-    return productById.get(id);
-  }, [id]);
+  // Read `from` state passed from Catalog to restore previous search/filter state on Back
+  const fromUrl = location.state?.from || "/catalogo";
 
-  // Dynamic meta for product page per Section A.6
+  // Dynamic meta tags per Section A.4
   const metaTitle = product ? `${product.name} | SERSE Industrial` : "";
-  const metaDesc = useMemo(() => {
-    if (!product) return "";
-    const brandPart = product.brand ? ` de ${product.brand}` : "";
-    const npPart = product.np ? `, N/P ${product.np}` : "";
-    return `${product.name}${brandPart}${npPart}. Solicita tu cotización por WhatsApp.`;
-  }, [product]);
+  const metaDesc = product
+    ? `${product.name} (N/P: ${product.np || "por confirmar"}, Marca: ${
+        product.brand || "Industrial"
+      }). Cotiza suministros industriales MRO en Chihuahua.`
+    : "";
 
   usePageMeta({
     title: metaTitle,
     description: metaDesc,
   });
 
+  const [copied, setCopied] = useState(false);
+
+  // Related products from same category per Section A.3 (up to 4, excluding current product)
   const relatedProducts = useMemo(() => {
-    if (!product) return [];
-    const sameSub = catalog.filter(
-      (p) =>
-        p.id !== product.id &&
-        p.category === product.category &&
-        p.subcategory === product.subcategory
-    );
-    if (sameSub.length >= 2) {
-      return sameSub.slice(0, 4);
-    }
-    const sameCat = catalog.filter(
-      (p) => p.id !== product.id && p.category === product.category
-    );
-    return sameCat.slice(0, 4);
+    if (!product || !product.category) return [];
+    return catalog
+      .filter((p) => p.category === product.category && p.id !== product.id)
+      .slice(0, 4);
   }, [product]);
 
   if (!product) {
@@ -74,18 +66,17 @@ export function ProductPage() {
   const qty = getQty(product.id);
   const inList = qty > 0;
 
-  // Back to results state link per Section A.5
-  const fromUrl = location.state?.from || "/catalogo";
-
-  // Breadcrumbs per Section A.4
+  // Breadcrumbs items per Section A.4
   const breadcrumbItems = [
     { label: t("navHome"), to: "/" },
     { label: t("navCatalog"), to: "/catalogo" },
-    {
+  ];
+  if (product.category) {
+    breadcrumbItems.push({
       label: product.category,
       to: `/catalogo?cat=${encodeURIComponent(product.category)}`,
-    },
-  ];
+    });
+  }
   if (product.subcategory) {
     breadcrumbItems.push({
       label: product.subcategory,
@@ -133,7 +124,7 @@ export function ProductPage() {
   const inquiryUrl = buildWhatsAppUrl(SITE.whatsappNumber, inquiryMessage);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <Container className="py-8">
       {/* Back link & Breadcrumbs */}
       <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <Link
@@ -146,21 +137,23 @@ export function ProductPage() {
         <Breadcrumbs items={breadcrumbItems} />
       </div>
 
-      {/* Main product presentation */}
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-        {/* Left: Large Image */}
-        <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-lavender p-8 shadow-sm">
-          <ProductImage
-            src={product.image}
-            alt={product.name}
-            width={600}
-            height={450}
-            className="h-full w-full object-contain"
-          />
+      {/* Main product presentation: 2 columns from md; at 2xl: image 5/12 and info 7/12 */}
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 2xl:grid-cols-12 md:gap-12">
+        {/* Left: Large Image (5/12 on 2xl) */}
+        <div className="2xl:col-span-5">
+          <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-lavender p-8 shadow-sm">
+            <ProductImage
+              src={product.image}
+              alt={product.name}
+              width={600}
+              height={450}
+              className="h-full w-full object-contain"
+            />
+          </div>
         </div>
 
-        {/* Right: Product details */}
-        <div className="flex flex-col">
+        {/* Right: Product details (7/12 on 2xl) */}
+        <div className="flex flex-col 2xl:col-span-7">
           {product.brand && (
             <div className="mb-2">
               <Badge variant="brand">{product.brand}</Badge>
@@ -301,7 +294,7 @@ export function ProductPage() {
         </div>
       </div>
 
-      {/* "Más de esta categoría" section per Section A.3 */}
+      {/* "Más de esta categoría" section */}
       {relatedProducts.length > 0 && (
         <section className="mt-16 border-t border-line pt-10">
           <h2 className="text-2xl font-bold text-brand-900">
@@ -318,6 +311,6 @@ export function ProductPage() {
           </div>
         </section>
       )}
-    </div>
+    </Container>
   );
 }

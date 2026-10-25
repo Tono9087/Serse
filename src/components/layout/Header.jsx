@@ -7,18 +7,20 @@ import { useI18n } from "../../i18n/I18nContext.jsx";
 import { SearchBox } from "../search/SearchBox.jsx";
 import { RfqButton } from "../rfq/RfqButton.jsx";
 import { LanguageToggle } from "../ui/LanguageToggle.jsx";
+import { Container } from "./Container.jsx";
 
-export function LogoLockup({ className = "" }) {
+export function LogoLockup({ className = "", imgClassName = "" }) {
   return (
     <Link
       to="/"
       aria-label={`${SITE.name} ${SITE.badge}`}
-      className={`inline-flex items-center gap-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className}`}>
-      <span className="text-xl font-bold tracking-tight text-white">SERSE</span>
-      <span className="text-lg font-normal text-white">Industrial</span>
-      <span className="rounded bg-brand-500 px-1.5 py-0.5 text-xs font-bold uppercase tracking-wider text-white">
-        {SITE.badge}
-      </span>
+      className={`inline-flex items-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className}`}
+    >
+      <img
+        src="/images/logo.png"
+        alt="SERSE Industrial"
+        className={imgClassName || "h-12 sm:h-14 md:h-16 w-auto object-contain"}
+      />
     </Link>
   );
 }
@@ -43,7 +45,7 @@ export function Header() {
     <header className="sticky top-0 z-30 shadow-sm">
       {/* 1. Top utility strip (bg-brand-950) */}
       <div className="border-b border-white/10 bg-brand-950 text-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1.5 text-xs sm:px-6 lg:px-8">
+        <Container className="flex items-center justify-between py-1.5 text-xs">
           <div className="flex items-center gap-5">
             {SITE.phoneDisplay && (
               <a
@@ -79,12 +81,12 @@ export function Header() {
             <span className="text-white/80 hidden sm:inline">{SITE.location}</span>
             <LanguageToggle />
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* 2. Main brand bar (bg-gradient from-brand-950 via-brand-900 to-brand-700) */}
       <div className="bg-gradient-to-r from-brand-950 via-brand-900 to-brand-700 text-white border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+        <Container className="py-3">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <button
@@ -118,8 +120,8 @@ export function Header() {
               <LogoLockup />
             </div>
 
-            {/* SearchBox on desktop */}
-            <div className="hidden md:block md:flex-1 md:max-w-md lg:max-w-lg">
+            {/* SearchBox on desktop (max-w-3xl flex-1) */}
+            <div className="hidden md:block flex-1 max-w-3xl">
               <SearchBox initialValue={currentQ} />
             </div>
 
@@ -132,12 +134,12 @@ export function Header() {
           <div className="mt-3 md:hidden">
             <SearchBox initialValue={currentQ} />
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* 3. Navigation bar (bg-mist, bold ink links, hover/active text-brand-700 with 2px underline) */}
       <div className="bg-mist border-b border-line">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <nav
             aria-label={t("mainNavLabel")}
             className="hidden lg:flex lg:items-center lg:gap-6"
@@ -159,7 +161,7 @@ export function Header() {
               </NavLink>
             ))}
           </nav>
-        </div>
+        </Container>
 
         {/* Mobile menu dropdown with smooth grid-rows accordion animation */}
         <div

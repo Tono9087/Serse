@@ -4,6 +4,7 @@ import { ArrowRight, Tag } from "lucide-react";
 import catalog from "../data/catalog.json";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
+import { Container } from "../components/layout/Container.jsx";
 
 export function Brands() {
   const { t } = useI18n();
@@ -36,7 +37,7 @@ export function Brands() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <Container className="py-10">
       <div className="max-w-3xl">
         <h1 className="text-3xl font-bold text-brand-900 md:text-4xl">
           {t("brandsPageTitle")}
@@ -44,7 +45,7 @@ export function Brands() {
         <p className="mt-2 text-base text-muted">{t("brandsPageIntro")}</p>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
         {brands.map((brand) => (
           <Link
             key={brand.name}
@@ -88,6 +89,6 @@ export function Brands() {
           </Link>
         </div>
       )}
-    </div>
+    </Container>
   );
 }

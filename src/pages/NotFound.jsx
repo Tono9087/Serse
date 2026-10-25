@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { AlertCircle, ArrowLeft, Search } from "lucide-react";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
+import { Container } from "../components/layout/Container.jsx";
 
 export function NotFound() {
   const { t } = useI18n();
@@ -12,7 +13,7 @@ export function NotFound() {
   });
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
+    <Container className="flex flex-col items-center justify-center py-20 text-center">
       <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-lavender text-brand-900 border border-line">
         <AlertCircle className="h-7 w-7" aria-hidden="true" />
       </div>
@@ -36,6 +37,6 @@ export function NotFound() {
           <span>{t("viewCatalog")}</span>
         </Link>
       </div>
-    </div>
+    </Container>
   );
 }
