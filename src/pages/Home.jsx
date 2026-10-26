@@ -6,6 +6,7 @@ import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { SearchBox } from "../components/search/SearchBox.jsx";
 import { Container } from "../components/layout/Container.jsx";
+import { ParallaxHero } from "../components/ui/ParallaxHero.jsx";
 import { CategoryGrid } from "../components/catalog/CategoryGrid.jsx";
 import { ClientsSection } from "../components/clients/ClientsSection.jsx";
 
@@ -23,17 +24,13 @@ export function Home() {
   return (
     <div>
       {/* 1. Hero (reduced vertical padding, full-bleed with Container) */}
-      <section className="relative overflow-hidden bg-brand-950 py-12 text-white sm:py-16">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/banner_bg.jpg')" }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/80 to-brand-900/70"
-          aria-hidden="true"
-        />
-        <Container className="relative z-10">
+      <ParallaxHero
+        imageSrc="/images/banner_bg.jpg"
+        bottomFade={false}
+        overlayClassName="bg-gradient-to-r from-brand-950/90 via-brand-950/80 to-brand-900/70"
+        className="py-12 sm:py-16"
+      >
+        <Container>
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
               {SITE.name} · {SITE.badge}
@@ -73,7 +70,7 @@ export function Home() {
             </div>
           </div>
         </Container>
-      </section>
+      </ParallaxHero>
 
       {/* 2. Categories grid: 2 cols mobile, 4 on lg, keep 4 on 2xl */}
       <section className="py-12 sm:py-16">

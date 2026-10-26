@@ -7,6 +7,7 @@ import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
 import { Container } from "../components/layout/Container.jsx";
+import { ParallaxHero } from "../components/ui/ParallaxHero.jsx";
 import { CategoryGrid } from "../components/catalog/CategoryGrid.jsx";
 import { ClientsSection } from "../components/clients/ClientsSection.jsx";
 
@@ -49,8 +50,15 @@ export function About() {
 
   return (
     <div>
-      {/* 1. Header band */}
-      <section className="bg-gradient-to-b from-brand-950 via-brand-900 to-brand-800 py-16 text-white md:py-24">
+      {/* 1. Parallax Hero */}
+      <ParallaxHero
+        imageSrc="/images/about-hero.jpg"
+        speed={0.2}
+        extra={0.12}
+        focus="50% 0%"
+        bottomFade={true}
+        className="py-16 pb-28 md:py-24 md:pb-36"
+      >
         <Container>
           <div className="max-w-3xl">
             <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">
@@ -63,7 +71,7 @@ export function About() {
             </div>
           </div>
         </Container>
-      </section>
+      </ParallaxHero>
 
       {/* 2. Pillars section */}
       <section className="bg-lavender py-16 sm:py-20">
