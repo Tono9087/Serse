@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from "react";
  * 5. Decorative image (`alt=""`, `aria-hidden="true"`). Falls back to plain gradient band if missing.
  */
 export function ParallaxHero({
-  imageSrc = "/images/about-hero.jpg",
+  imageSrc = "/images/about-hero.webp",
   speed = 0.2,
   extra = 0.12,
   focus = "50% 0%",

@@ -25,7 +25,7 @@ export function Home() {
     <div>
       {/* 1. Hero (reduced vertical padding, full-bleed with Container) */}
       <ParallaxHero
-        imageSrc="/images/banner_bg.jpg"
+        imageSrc="/images/banner_bg.webp"
         bottomFade={false}
         overlayClassName="bg-gradient-to-r from-brand-950/90 via-brand-950/80 to-brand-900/70"
         className="py-12 sm:py-16"

@@ -52,7 +52,7 @@ export function About() {
     <div>
       {/* 1. Parallax Hero */}
       <ParallaxHero
-        imageSrc="/images/about-hero.jpg"
+        imageSrc="/images/about-hero.webp"
         speed={0.2}
         extra={0.12}
         focus="50% 0%"
