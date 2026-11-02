@@ -1,9 +1,20 @@
 import { describe, it, expect } from "vitest";
 import { BRANDS } from "../../config/brands.js";
-import { getBrandCatalogUrl, getBrandProductCount } from "../brands.js";
+import { buildBrandDirectory, getBrandCatalogUrl, getBrandProductCount } from "../brands.js";
 import catalog from "../../data/catalog.json";
 
 describe("brands lib", () => {
+  it("highlights Brady with all 11 catalog items (Brady + Brady IDPAL)", () => {
+    const brady = BRANDS.find((b) => b.slug === "brady");
+    expect(brady).toBeDefined();
+    expect(getBrandProductCount(brady, catalog)).toBe(11);
+    const { inStock, onDemand } = buildBrandDirectory(BRANDS, catalog);
+    expect(inStock[0].brand.slug).toBe("brady");
+    expect(inStock[0].count).toBe(11);
+    expect(inStock.every((entry) => entry.count > 0)).toBe(true);
+    expect(onDemand.every((entry) => entry.count === 0)).toBe(true);
+  });
+
   it("returns real count for SMC from catalog data", () => {
     const smc = BRANDS.find((b) => b.slug === "smc");
     expect(smc).toBeDefined();

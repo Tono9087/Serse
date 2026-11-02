@@ -116,6 +116,11 @@ export const es = {
   viewBrandProducts: "Ver productos",
   viewAll: "Ver todas",
   lookingForAnotherBrand: "¿Buscas otra marca?",
+  brandsInCatalogHeading: "Marcas con productos en catálogo",
+  brandsInCatalogSub: "Haz clic en una marca para filtrar las partidas disponibles de inmediato en el catálogo.",
+  brandsOnDemandHeading: "Marcas aliadas bajo pedido",
+  brandsOnDemandSub: "Suministramos estas líneas mediante cotización directa por número de parte.",
+  brandOnDemandBadge: "Distribución bajo pedido / Cotización directa",
   viewTheCatalog: "Ver el catálogo",
 
   // About Page

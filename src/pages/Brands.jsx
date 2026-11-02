@@ -4,7 +4,7 @@ import { ArrowRight, MessageSquare } from "lucide-react";
 import catalog from "../data/catalog.json";
 import { BRANDS } from "../config/brands.js";
 import { WHATSAPP_NUMBER } from "../config/site.js";
-import { getBrandProductCount } from "../lib/brands.js";
+import { buildBrandDirectory } from "../lib/brands.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
@@ -19,13 +19,10 @@ export function Brands() {
     description: t("metaBrandsDesc"),
   });
 
-  // Filter out disabled brands and compute product counts from catalog
-  const brandList = useMemo(() => {
-    return BRANDS.filter((b) => b.enabled !== false).map((brand) => ({
-      brand,
-      count: getBrandProductCount(brand, catalog),
-    }));
-  }, []);
+  const { inStock, onDemand } = useMemo(
+    () => buildBrandDirectory(BRANDS, catalog),
+    []
+  );
 
   const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
@@ -34,20 +31,61 @@ export function Brands() {
       <Container>
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-brand-900 md:text-4xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-brand-900 md:text-4xl">
             {t("brandsPageHeading")}
-          </h2>
+          </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-muted sm:text-lg leading-relaxed">
             {t("brandsPageSub")}
           </p>
         </div>
 
-        {/* Logo Grid: 2 cols (<sm), 3 (sm), 4 (lg), 5 (xl and up) */}
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 xl:grid-cols-5">
-          {brandList.map(({ brand, count }) => (
-            <BrandCard key={brand.slug} brand={brand} count={count} />
-          ))}
-        </div>
+        {/* 1. Brands with active products in catalog */}
+        <section aria-labelledby="brands-in-catalog" className="mt-12">
+          <div className="flex flex-col justify-between gap-2 border-b border-line pb-4 sm:flex-row sm:items-end">
+            <div>
+              <h2
+                id="brands-in-catalog"
+                className="text-xl font-semibold text-brand-900 sm:text-2xl"
+              >
+                {t("brandsInCatalogHeading")}
+              </h2>
+              <p className="mt-1 text-sm text-muted">
+                {t("brandsInCatalogSub")}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 xl:grid-cols-5">
+            {inStock.map(({ brand, count }) => (
+              <BrandCard key={brand.slug} brand={brand} count={count} />
+            ))}
+          </div>
+        </section>
+
+        {/* 2. Allied brands available on order / direct quote */}
+        {onDemand.length > 0 && (
+          <section aria-labelledby="brands-on-demand" className="mt-16">
+            <div className="flex flex-col justify-between gap-2 border-b border-line pb-4 sm:flex-row sm:items-end">
+              <div>
+                <h2
+                  id="brands-on-demand"
+                  className="text-xl font-semibold text-brand-900 sm:text-2xl"
+                >
+                  {t("brandsOnDemandHeading")}
+                </h2>
+                <p className="mt-1 text-sm text-muted">
+                  {t("brandsOnDemandSub")}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4 xl:grid-cols-5">
+              {onDemand.map(({ brand, count }) => (
+                <BrandCard key={brand.slug} brand={brand} count={count} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Section Footer */}
         <div className="mt-16 text-center sm:mt-20">

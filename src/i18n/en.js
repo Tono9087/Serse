@@ -116,6 +116,11 @@ export const en = {
   viewBrandProducts: "View products",
   viewAll: "View all",
   lookingForAnotherBrand: "Looking for another brand?",
+  brandsInCatalogHeading: "Brands with products in catalog",
+  brandsInCatalogSub: "Click a brand to filter items currently listed in our catalog.",
+  brandsOnDemandHeading: "Partner brands on request",
+  brandsOnDemandSub: "We supply these lines via direct quote by part number.",
+  brandOnDemandBadge: "On-order distribution / Direct quote",
   viewTheCatalog: "Browse the catalog",
 
   // About Page
