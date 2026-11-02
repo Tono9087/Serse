@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { ArrowRight, MessageSquare, PackageSearch, RotateCcw } from "lucide-react";
 import catalog from "../data/catalog.json";
-import { SITE } from "../config/site.js";
+import { WHATSAPP_NUMBER } from "../config/site.js";
 import { BRANDS } from "../config/brands.js";
 import { getBrandProductCount } from "../lib/brands.js";
 import { applyFilters, facetCounts } from "../lib/filters.js";
@@ -254,7 +254,7 @@ export function Catalog() {
   }
 
   const currentFromUrl = `${location.pathname}${location.search}`;
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <Container className="py-8">
@@ -404,7 +404,7 @@ export function Catalog() {
                   <RotateCcw className="h-4 w-4" aria-hidden="true" />
                   {t("clearFilters")}
                 </Button>
-                {SITE.whatsappNumber && (
+                {WHATSAPP_NUMBER && (
                   <a
                     href={waHref}
                     target="_blank"

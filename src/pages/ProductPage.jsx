@@ -10,7 +10,7 @@ import {
   Plus,
 } from "lucide-react";
 import catalog from "../data/catalog.json";
-import { SITE } from "../config/site.js";
+import { BUSINESS_NAME, WHATSAPP_NUMBER } from "../config/site.js";
 import { buildWhatsAppUrl } from "../lib/whatsapp.js";
 import { useRfq } from "../context/RfqContext.jsx";
 import { usePageMeta } from "../hooks/usePageMeta.js";
@@ -37,7 +37,7 @@ export function ProductPage() {
   const fromUrl = location.state?.from || "/catalogo";
 
   // Dynamic meta tags per Section A.4
-  const metaTitle = product ? `${product.name} | SERSE Industrial` : "";
+  const metaTitle = product ? `${product.name} | ${BUSINESS_NAME}` : "";
   const metaDesc = product
     ? `${product.name} (N/P: ${product.np || "por confirmar"}, Marca: ${
         product.brand || "Industrial"
@@ -121,7 +121,7 @@ export function ProductPage() {
   } (Marca: ${product.brand || "no especificada"}, N/P: ${
     product.np || "por confirmar"
   }).`;
-  const inquiryUrl = buildWhatsAppUrl(SITE.whatsappNumber, inquiryMessage);
+  const inquiryUrl = buildWhatsAppUrl(WHATSAPP_NUMBER, inquiryMessage);
 
   return (
     <Container className="py-8">
@@ -279,7 +279,7 @@ export function ProductPage() {
               </div>
             )}
 
-            {SITE.whatsappNumber && (
+            {WHATSAPP_NUMBER && (
               <a
                 href={inquiryUrl}
                 target="_blank"

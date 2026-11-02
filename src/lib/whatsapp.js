@@ -1,4 +1,4 @@
-import { SITE } from "../config/site.js";
+import { BUSINESS_NAME, WHATSAPP_NUMBER } from "../config/site.js";
 
 /**
  * Sanitizes customer-entered text:
@@ -26,7 +26,7 @@ export function sanitizeUserText(value) {
 export function buildQuoteMessage({
   customer = {},
   lines = [],
-  siteName = SITE.name,
+  siteName = BUSINESS_NAME,
 } = {}) {
   const nombre = sanitizeUserText(customer.nombre ?? customer.name ?? "");
   const empresa = sanitizeUserText(customer.empresa ?? customer.company ?? "");
@@ -34,7 +34,7 @@ export function buildQuoteMessage({
   const telefono = sanitizeUserText(customer.telefono ?? customer.phone ?? "");
   const notas = sanitizeUserText(customer.notas ?? customer.notes ?? "");
 
-  const cleanSiteName = siteName || SITE.name;
+  const cleanSiteName = siteName || BUSINESS_NAME;
   const headerSiteName = cleanSiteName.toUpperCase();
 
   const headerLines = [
@@ -94,8 +94,8 @@ export function buildQuoteMessage({
  * @param {string} text
  * @returns {string}
  */
-export function buildWhatsAppUrl(number = SITE.whatsappNumber, text = "") {
-  const digits = String(number || SITE.whatsappNumber).replace(/\D/g, "");
+export function buildWhatsAppUrl(number = WHATSAPP_NUMBER, text = "") {
+  const digits = String(number || WHATSAPP_NUMBER).replace(/\D/g, "");
   const encoded = encodeURIComponent(text);
   return `https://wa.me/${digits}?text=${encoded}`;
 }
@@ -105,7 +105,7 @@ export function buildWhatsAppUrl(number = SITE.whatsappNumber, text = "") {
  * @param {string} [number]
  * @returns {string}
  */
-export function buildGenericGreetingUrl(number = SITE.whatsappNumber) {
+export function buildGenericGreetingUrl(number = WHATSAPP_NUMBER) {
   return buildWhatsAppUrl(
     number,
     "Hola, quisiera solicitar una cotización."
@@ -119,7 +119,7 @@ export function buildGenericGreetingUrl(number = SITE.whatsappNumber) {
  * @param {string} [number]
  * @returns {string}
  */
-export function buildBrandGreetingUrl(brandName, number = SITE.whatsappNumber) {
+export function buildBrandGreetingUrl(brandName, number = WHATSAPP_NUMBER) {
   return buildWhatsAppUrl(
     number,
     `Hola, quisiera cotizar productos de la marca ${brandName}.`

@@ -1,11 +1,13 @@
+import { BUSINESS_NAME } from "./site.js";
+
 export const ABOUT = {
   intro: {
     es: [
-      "SERSE Industrial es una empresa especializada en soluciones MRO enfocada en garantizar la continuidad operativa de empresas industriales en México.",
+      `${BUSINESS_NAME} es una empresa especializada en soluciones MRO enfocada en garantizar la continuidad operativa de empresas industriales en México.`,
       "Nos dedicamos al suministro estratégico de refacciones, herramientas, equipo eléctrico, seguridad industrial y consumibles críticos para operación.",
     ],
     en: [
-      "SERSE Industrial is a specialized MRO solutions company focused on ensuring operational continuity for industrial facilities across Mexico.",
+      `${BUSINESS_NAME} is a specialized MRO solutions company focused on ensuring operational continuity for industrial facilities across Mexico.`,
       "We are dedicated to the strategic supply of spare parts, tools, electrical equipment, industrial safety, and critical operational consumables.",
     ],
   },

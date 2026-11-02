@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Eye, MessageSquare, ShieldCheck, Target } from "lucide-react";
 import { ABOUT } from "../config/about.js";
-import { SITE } from "../config/site.js";
+import { WHATSAPP_NUMBER } from "../config/site.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
@@ -46,7 +46,7 @@ export function About() {
     description: content.intro[0] || t("metaAboutDesc"),
   });
 
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <div>
@@ -132,7 +132,7 @@ export function About() {
             {t("aboutCtaHeading")}
           </h2>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            {SITE.whatsappNumber && (
+            {WHATSAPP_NUMBER && (
               <a
                 href={waHref}
                 target="_blank"

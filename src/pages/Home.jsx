@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
-import { SITE } from "../config/site.js";
+import { BUSINESS_NAME, WHATSAPP_NUMBER, PHONE_DISPLAY, PHONE_HREF, EMAIL_CONTACT, SITE } from "../config/site.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 import { useI18n } from "../i18n/I18nContext.jsx";
@@ -18,8 +18,7 @@ export function Home() {
     description: t("metaHomeDesc"),
   });
 
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
-  const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <div>
@@ -33,7 +32,7 @@ export function Home() {
         <Container>
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-              {SITE.name} · {SITE.badge}
+              {BUSINESS_NAME} · {SITE.badge}
             </span>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl">
               {t("heroTagline")}
@@ -56,7 +55,7 @@ export function Home() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
 
-              {SITE.whatsappNumber && (
+              {WHATSAPP_NUMBER && (
                 <a
                   href={waHref}
                   target="_blank"
@@ -118,17 +117,17 @@ export function Home() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              {SITE.phoneDisplay && (
+              {PHONE_DISPLAY && (
                 <a
-                  href={telHref}
+                  href={PHONE_HREF}
                   className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-brand-700 bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 transition duration-150 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
-                  <span className="font-mono">{SITE.phoneDisplay}</span>
+                  <span className="font-mono">{PHONE_DISPLAY}</span>
                 </a>
               )}
 
-              {SITE.whatsappNumber && (
+              {WHATSAPP_NUMBER && (
                 <a
                   href={waHref}
                   target="_blank"
@@ -140,13 +139,13 @@ export function Home() {
                 </a>
               )}
 
-              {SITE.email && (
+              {EMAIL_CONTACT && (
                 <a
-                  href={`mailto:${SITE.email}`}
+                  href={`mailto:${EMAIL_CONTACT}`}
                   className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-brand-900 transition duration-150 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
                 >
                   <Mail className="h-4 w-4" aria-hidden="true" />
-                  <span>{SITE.email}</span>
+                  <span>{EMAIL_CONTACT}</span>
                 </a>
               )}
             </div>

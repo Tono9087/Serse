@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink, useSearchParams } from "react-router-dom";
 import { Mail, Menu, MessageSquare, Phone, X } from "lucide-react";
-import { SITE } from "../../config/site.js";
+import { BUSINESS_NAME, WHATSAPP_NUMBER, PHONE_DISPLAY, PHONE_HREF, EMAIL_CONTACT, SITE } from "../../config/site.js";
 import { buildGenericGreetingUrl } from "../../lib/whatsapp.js";
 import { useI18n } from "../../i18n/I18nContext.jsx";
 import { SearchBox } from "../search/SearchBox.jsx";
@@ -13,12 +13,12 @@ export function LogoLockup({ className = "", imgClassName = "" }) {
   return (
     <Link
       to="/"
-      aria-label={`${SITE.name} ${SITE.badge}`}
+      aria-label={`${BUSINESS_NAME} ${SITE.badge}`}
       className={`inline-flex items-center rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${className}`}
     >
       <img
         src="/images/logo.png"
-        alt="SERSE Industrial"
+        alt={BUSINESS_NAME}
         className={imgClassName || "h-12 sm:h-14 md:h-16 w-auto object-contain"}
       />
     </Link>
@@ -31,8 +31,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const currentQ = searchParams.get("q") || "";
-  const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   const navItems = [
     { to: "/", label: t("navHome"), end: true },
@@ -48,16 +47,16 @@ export function Header() {
       <div className="border-b border-white/10 bg-brand-950 text-white">
         <Container className="flex items-center justify-between py-1.5 text-xs">
           <div className="flex items-center gap-5">
-            {SITE.phoneDisplay && (
+            {PHONE_DISPLAY && (
               <a
-                href={telHref}
+                href={PHONE_HREF}
                 className="inline-flex items-center gap-1.5 text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
               >
                 <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="font-mono">{SITE.phoneDisplay}</span>
+                <span className="font-mono">{PHONE_DISPLAY}</span>
               </a>
             )}
-            {SITE.whatsappNumber && (
+            {WHATSAPP_NUMBER && (
               <a
                 href={waHref}
                 target="_blank"
@@ -68,13 +67,13 @@ export function Header() {
                 <span>WhatsApp</span>
               </a>
             )}
-            {SITE.email && (
+            {EMAIL_CONTACT && (
               <a
-                href={`mailto:${SITE.email}`}
+                href={`mailto:${EMAIL_CONTACT}`}
                 className="inline-flex items-center gap-1.5 text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
               >
                 <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{SITE.email}</span>
+                <span>{EMAIL_CONTACT}</span>
               </a>
             )}
           </div>

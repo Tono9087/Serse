@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { BUSINESS_NAME, WHATSAPP_NUMBER } from "../../config/site.js";
 import { buildQuoteMessage, buildWhatsAppUrl } from "../whatsapp.js";
 
 describe("whatsapp message builder", () => {
@@ -26,11 +27,10 @@ describe("whatsapp message builder", () => {
           np: null,
           qty: 10,
         },
-      ],
-      siteName: "SERSE Industrial",
+      ]
     });
 
-    expect(msg).toContain("*NUEVA SOLICITUD DE COTIZACIÓN - SERSE INDUSTRIAL*");
+    expect(msg).toContain(`*NUEVA SOLICITUD DE COTIZACIÓN - ${BUSINESS_NAME.toUpperCase()}*`);
     expect(msg).toContain("--------------------------------------");
     expect(msg).toContain("*Cliente:* Juan Pérez");
     expect(msg).toContain("*Empresa:* PlantaNorte S.A.");
@@ -45,10 +45,10 @@ describe("whatsapp message builder", () => {
       "2. *Silenciador neumático (Plástico)*\n   - Marca: no especificada\n   - N/P: por confirmar\n   - Cantidad: 10 pzas"
     );
     expect(msg).toContain("*Total de partidas:* 2");
-    expect(msg).toContain("Enviado desde el sitio web de SERSE Industrial");
+    expect(msg).toContain(`Enviado desde el sitio web de ${BUSINESS_NAME}`);
 
-    const url = buildWhatsAppUrl("5216145341188", msg);
-    expect(url.startsWith("https://wa.me/5216145341188?text=")).toBe(true);
+    const url = buildWhatsAppUrl(undefined, msg);
+    expect(url.startsWith(`https://wa.me/${WHATSAPP_NUMBER}?text=`)).toBe(true);
     expect(decodeURIComponent(url.split("?text=")[1])).toBe(msg);
   });
 
@@ -101,7 +101,7 @@ describe("whatsapp message builder", () => {
 
   it("round-trips the encoded URL with decodeURIComponent", () => {
     const rawMessage = "Línea 1: *Negritas*\nLínea 2: &?=% café 100% / #123";
-    const url = buildWhatsAppUrl("5216145341188", rawMessage);
+    const url = buildWhatsAppUrl(undefined, rawMessage);
     const encodedText = url.split("?text=")[1];
     expect(decodeURIComponent(encodedText)).toBe(rawMessage);
   });

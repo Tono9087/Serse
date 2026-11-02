@@ -1,3 +1,5 @@
+import { BUSINESS_NAME } from "../config/site.js";
+
 export const es = {
   // General & Accessibility
   skipToContent: "Saltar al contenido principal",
@@ -174,7 +176,7 @@ export const es = {
   footerQuickLinks: "Enlaces rápidos",
   footerContactHeading: "Contacto",
   footerPrivacyLink: "Aviso de privacidad",
-  footerCopyright: "© {year} SERSE Industrial. Todos los derechos reservados.",
+  footerCopyright: `© {year} ${BUSINESS_NAME}. Todos los derechos reservados.`,
 
   // NotFound
   notFoundTitle: "Página no encontrada",
@@ -182,16 +184,16 @@ export const es = {
   backToHome: "Ir al inicio",
 
   // Page Meta Titles & Descriptions
-  metaHomeTitle: "SERSE Industrial | Suministros MRO en Chihuahua",
+  metaHomeTitle: `${BUSINESS_NAME} | Suministros MRO en Chihuahua`,
   metaHomeDesc: "Encuentra productos MRO para mantenimiento, reparación y operación industrial.",
-  metaAboutTitle: "Sobre nosotros | SERSE Industrial",
-  metaAboutDesc: "SERSE Industrial es una empresa especializada en soluciones MRO enfocada en garantizar la continuidad operativa de empresas industriales en México.",
-  metaCatalogTitle: "Catálogo industrial MRO | SERSE Industrial",
+  metaAboutTitle: `Sobre nosotros | ${BUSINESS_NAME}`,
+  metaAboutDesc: `${BUSINESS_NAME} es una empresa especializada en soluciones MRO enfocada en garantizar la continuidad operativa de empresas industriales en México.`,
+  metaCatalogTitle: `Catálogo industrial MRO | ${BUSINESS_NAME}`,
   metaCatalogDesc: "Busca por número de parte, nombre o marca y solicita tu cotización por WhatsApp.",
-  metaBrandsTitle: "Marcas | SERSE Industrial",
-  metaBrandsDesc: "Marcas de suministros MRO disponibles en el catálogo de SERSE Industrial.",
-  metaContactTitle: "Contacto | SERSE Industrial",
+  metaBrandsTitle: `Marcas | ${BUSINESS_NAME}`,
+  metaBrandsDesc: `Marcas de suministros MRO disponibles en el catálogo de ${BUSINESS_NAME}.`,
+  metaContactTitle: `Contacto | ${BUSINESS_NAME}`,
   metaContactDesc: "Solicita cotizaciones de suministros industriales MRO en Chihuahua por WhatsApp o teléfono.",
-  metaNotFoundTitle: "Página no encontrada | SERSE Industrial",
-  metaNotFoundDesc: "Página no encontrada en el catálogo de SERSE Industrial.",
+  metaNotFoundTitle: `Página no encontrada | ${BUSINESS_NAME}`,
+  metaNotFoundDesc: `Página no encontrada en el catálogo de ${BUSINESS_NAME}.`,
 };

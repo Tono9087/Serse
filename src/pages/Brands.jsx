@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MessageSquare } from "lucide-react";
 import catalog from "../data/catalog.json";
 import { BRANDS } from "../config/brands.js";
-import { SITE } from "../config/site.js";
+import { WHATSAPP_NUMBER } from "../config/site.js";
 import { getBrandProductCount } from "../lib/brands.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
@@ -27,7 +27,7 @@ export function Brands() {
     }));
   }, []);
 
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <div className="bg-white py-16 md:py-24">
@@ -63,7 +63,7 @@ export function Brands() {
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
 
-            {SITE.whatsappNumber && (
+            {WHATSAPP_NUMBER && (
               <a
                 href={waHref}
                 target="_blank"

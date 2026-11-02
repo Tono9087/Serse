@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, MessageSquare, Phone } from "lucide-react";
-import { SITE } from "../../config/site.js";
+import { WHATSAPP_NUMBER, PHONE_DISPLAY, PHONE_HREF, EMAIL_CONTACT, SITE } from "../../config/site.js";
 import { buildGenericGreetingUrl } from "../../lib/whatsapp.js";
 import { useI18n } from "../../i18n/I18nContext.jsx";
 import { LogoLockup } from "./Header.jsx";
@@ -9,8 +9,7 @@ import { Container } from "./Container.jsx";
 export function Footer() {
   const { t } = useI18n();
   const currentYear = new Date().getFullYear();
-  const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <footer className="bg-brand-950 text-white border-t border-white/10">
@@ -79,18 +78,18 @@ export function Footer() {
               {t("footerContactHeading")}
             </h2>
             <ul className="mt-3 space-y-2.5 text-sm text-white/90">
-              {SITE.phoneDisplay && (
+              {PHONE_DISPLAY && (
                 <li>
                   <a
-                    href={telHref}
+                    href={PHONE_HREF}
                     className="inline-flex items-center gap-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                   >
                     <Phone className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                    <span className="font-mono">{SITE.phoneDisplay}</span>
+                    <span className="font-mono">{PHONE_DISPLAY}</span>
                   </a>
                 </li>
               )}
-              {SITE.whatsappNumber && (
+              {WHATSAPP_NUMBER && (
                 <li>
                   <a
                     href={waHref}
@@ -106,14 +105,14 @@ export function Footer() {
                   </a>
                 </li>
               )}
-              {SITE.email && (
+              {EMAIL_CONTACT && (
                 <li>
                   <a
-                    href={`mailto:${SITE.email}`}
+                    href={`mailto:${EMAIL_CONTACT}`}
                     className="inline-flex items-center gap-2 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
                   >
                     <Mail className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                    <span>{SITE.email}</span>
+                    <span>{EMAIL_CONTACT}</span>
                   </a>
                 </li>
               )}

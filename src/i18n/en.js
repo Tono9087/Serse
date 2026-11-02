@@ -1,3 +1,5 @@
+import { BUSINESS_NAME } from "../config/site.js";
+
 export const en = {
   // General & Accessibility
   skipToContent: "Skip to main content",
@@ -174,7 +176,7 @@ export const en = {
   footerQuickLinks: "Quick links",
   footerContactHeading: "Contact",
   footerPrivacyLink: "Privacy notice",
-  footerCopyright: "© {year} SERSE Industrial. All rights reserved.",
+  footerCopyright: `© {year} ${BUSINESS_NAME}. All rights reserved.`,
 
   // NotFound
   notFoundTitle: "Page not found",
@@ -182,16 +184,16 @@ export const en = {
   backToHome: "Back to home",
 
   // Page Meta Titles & Descriptions
-  metaHomeTitle: "SERSE Industrial | MRO Supplies in Chihuahua",
+  metaHomeTitle: `${BUSINESS_NAME} | MRO Supplies in Chihuahua`,
   metaHomeDesc: "Find MRO products for industrial maintenance, repair, and operations.",
-  metaAboutTitle: "About Us | SERSE Industrial",
-  metaAboutDesc: "SERSE Industrial is a specialized MRO solutions company focused on ensuring operational continuity for industrial facilities across Mexico.",
-  metaCatalogTitle: "Industrial MRO Catalog | SERSE Industrial",
+  metaAboutTitle: `About Us | ${BUSINESS_NAME}`,
+  metaAboutDesc: `${BUSINESS_NAME} is a specialized MRO solutions company focused on ensuring operational continuity for industrial facilities across Mexico.`,
+  metaCatalogTitle: `Industrial MRO Catalog | ${BUSINESS_NAME}`,
   metaCatalogDesc: "Search by part number, name, or brand and request your quote via WhatsApp.",
-  metaBrandsTitle: "Brands | SERSE Industrial",
-  metaBrandsDesc: "Industrial MRO supply brands available in the SERSE Industrial catalog.",
-  metaContactTitle: "Contact | SERSE Industrial",
+  metaBrandsTitle: `Brands | ${BUSINESS_NAME}`,
+  metaBrandsDesc: `Industrial MRO supply brands available in the ${BUSINESS_NAME} catalog.`,
+  metaContactTitle: `Contact | ${BUSINESS_NAME}`,
   metaContactDesc: "Request quotes for industrial MRO supplies in Chihuahua via WhatsApp or phone.",
-  metaNotFoundTitle: "Page not found | SERSE Industrial",
-  metaNotFoundDesc: "Page not found in the SERSE Industrial catalog.",
+  metaNotFoundTitle: `Page not found | ${BUSINESS_NAME}`,
+  metaNotFoundDesc: `Page not found in the ${BUSINESS_NAME} catalog.`,
 };

@@ -1,14 +1,14 @@
 import { MessageSquare } from "lucide-react";
-import { SITE } from "../../config/site.js";
+import { WHATSAPP_NUMBER } from "../../config/site.js";
 import { buildGenericGreetingUrl } from "../../lib/whatsapp.js";
 import { useI18n } from "../../i18n/I18nContext.jsx";
 
 export function FloatingWhatsApp() {
   const { t } = useI18n();
 
-  if (!SITE.whatsappNumber) return null;
+  if (!WHATSAPP_NUMBER) return null;
 
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <aside aria-label="WhatsApp" className="fixed bottom-6 right-6 z-40">

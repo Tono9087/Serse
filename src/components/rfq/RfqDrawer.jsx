@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useRfq } from "../../context/RfqContext.jsx";
 import { useI18n } from "../../i18n/I18nContext.jsx";
-import { SITE } from "../../config/site.js";
+import { BUSINESS_NAME, WHATSAPP_NUMBER } from "../../config/site.js";
 import { buildQuoteMessage, buildWhatsAppUrl } from "../../lib/whatsapp.js";
 import { Drawer } from "../ui/Drawer.jsx";
 import { Button } from "../ui/Button.jsx";
@@ -38,12 +38,12 @@ export function RfqDrawer() {
     return buildQuoteMessage({
       customer: { nombre, empresa, correo, telefono, notas },
       lines,
-      siteName: SITE.name,
+      siteName: BUSINESS_NAME,
     });
   }, [nombre, empresa, correo, telefono, notas, lines]);
 
   const whatsappUrl = useMemo(() => {
-    return buildWhatsAppUrl(SITE.whatsappNumber, message);
+    return buildWhatsAppUrl(WHATSAPP_NUMBER, message);
   }, [message]);
 
   const isUrlLong = whatsappUrl.length > 1800;

@@ -1,5 +1,5 @@
 import { ClipboardList, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
-import { SITE } from "../config/site.js";
+import { WHATSAPP_NUMBER, PHONE_DISPLAY, PHONE_HREF, EMAIL_CONTACT, SITE } from "../config/site.js";
 import { buildGenericGreetingUrl } from "../lib/whatsapp.js";
 import { useRfq } from "../context/RfqContext.jsx";
 import { usePageMeta } from "../hooks/usePageMeta.js";
@@ -16,8 +16,7 @@ export function Contact() {
     description: t("metaContactDesc"),
   });
 
-  const waHref = buildGenericGreetingUrl(SITE.whatsappNumber);
-  const telHref = `tel:${SITE.phoneDisplay.replace(/[^\d+]/g, "")}`;
+  const waHref = buildGenericGreetingUrl(WHATSAPP_NUMBER);
 
   return (
     <Container className="py-10">
@@ -30,7 +29,7 @@ export function Contact() {
 
       <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* WhatsApp Card */}
-        {SITE.whatsappNumber && (
+        {WHATSAPP_NUMBER && (
           <div className="flex flex-col justify-between rounded-xl border border-line bg-white p-6 shadow-sm">
             <div>
               <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-900 text-white">
@@ -58,7 +57,7 @@ export function Contact() {
         )}
 
         {/* Phone Card */}
-        {SITE.phoneDisplay && (
+        {PHONE_DISPLAY && (
           <div className="flex flex-col justify-between rounded-xl border border-line bg-white p-6 shadow-sm">
             <div>
               <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-900 text-white">
@@ -73,18 +72,18 @@ export function Contact() {
             </div>
             <div className="mt-6">
               <a
-                href={telHref}
+                href={PHONE_HREF}
                 className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-brand-700 bg-white px-4 py-2.5 text-sm font-semibold text-brand-700 font-mono transition duration-150 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                <span>{SITE.phoneDisplay}</span>
+                <span>{PHONE_DISPLAY}</span>
               </a>
             </div>
           </div>
         )}
 
-        {/* Email Card (only if SITE.email is set) */}
-        {SITE.email && (
+        {/* Email Card (only if EMAIL_CONTACT is set) */}
+        {EMAIL_CONTACT && (
           <div className="flex flex-col justify-between rounded-xl border border-line bg-white p-6 shadow-sm">
             <div>
               <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-900 text-white">
@@ -99,11 +98,11 @@ export function Contact() {
             </div>
             <div className="mt-6">
               <a
-                href={`mailto:${SITE.email}`}
+                href={`mailto:${EMAIL_CONTACT}`}
                 className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-brand-700 bg-white px-4 py-2.5 text-sm font-semibold text-brand-700 transition duration-150 hover:bg-lavender focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
-                <span>{SITE.email}</span>
+                <span>{EMAIL_CONTACT}</span>
               </a>
             </div>
           </div>
