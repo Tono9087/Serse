@@ -30,7 +30,9 @@ export const SITE = {
   badge: "MRO",
   tagline: "Soluciones estratégicas en Mantenimiento, Reparación y Operación (MRO).",
   location: "Chihuahua, Chihuahua, México",
-  privacyUrl: "",                    // If empty, do not render a privacy link.
+  privacyUrl: "/aviso-privacidad",
+  legalEntityPlaceholder: "Grupo SERSE (denominación o razón social sujeta a confirmación por el titular)",
+  legalAddressPlaceholder: "Chihuahua, Chihuahua, México (domicilio fiscal completo por confirmar)",
   siteUrl: "https://gruposerse.com",
   clients: [
     { name: "Harman", logo: "/images/clients/harman.png" },

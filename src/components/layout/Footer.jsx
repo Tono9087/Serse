@@ -129,12 +129,12 @@ export function Footer() {
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-6 text-xs text-white/80 sm:flex-row">
           <p>{t("footerCopyright", { year: currentYear })}</p>
           {SITE.privacyUrl && (
-            <a
-              href={SITE.privacyUrl}
+            <Link
+              to={SITE.privacyUrl}
               className="hover:text-white hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
             >
               {t("footerPrivacyLink")}
-            </a>
+            </Link>
           )}
         </div>
       </Container>

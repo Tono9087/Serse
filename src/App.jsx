@@ -8,6 +8,7 @@ import { Catalog } from "./pages/Catalog.jsx";
 import { ProductPage } from "./pages/ProductPage.jsx";
 import { Brands } from "./pages/Brands.jsx";
 import { Contact } from "./pages/Contact.jsx";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 
 export default function App() {
@@ -23,6 +24,8 @@ export default function App() {
               <Route path="/producto/:id" element={<ProductPage />} />
               <Route path="/marcas" element={<Brands />} />
               <Route path="/contacto" element={<Contact />} />
+              <Route path="/aviso-privacidad" element={<PrivacyPolicy />} />
+              <Route path="/privacidad" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

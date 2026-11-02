@@ -1,5 +1,5 @@
 import { useId, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Check,
   ClipboardList,
@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useRfq } from "../../context/RfqContext.jsx";
 import { useI18n } from "../../i18n/I18nContext.jsx";
-import { BUSINESS_NAME, WHATSAPP_NUMBER } from "../../config/site.js";
+import { BUSINESS_NAME, WHATSAPP_NUMBER, SITE } from "../../config/site.js";
 import { buildQuoteMessage, buildWhatsAppUrl } from "../../lib/whatsapp.js";
 import { Drawer } from "../ui/Drawer.jsx";
 import { Button } from "../ui/Button.jsx";
@@ -368,6 +368,20 @@ export function RfqDrawer() {
                 <MessageSquare className="h-4 w-4" aria-hidden="true" />
                 <span>{t("sendQuoteWhatsApp")}</span>
               </button>
+
+              {SITE.privacyUrl && (
+                <p className="px-1 text-center text-[11px] leading-snug text-muted">
+                  {t("rfqPrivacyConsentPrefix")}{" "}
+                  <Link
+                    to={SITE.privacyUrl}
+                    onClick={close}
+                    className="font-semibold text-brand-700 underline hover:text-brand-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 rounded"
+                  >
+                    {t("footerPrivacyLink")}
+                  </Link>
+                  .
+                </p>
+              )}
 
               <button
                 type="button"
