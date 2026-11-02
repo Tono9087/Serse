@@ -57,13 +57,13 @@ export function CategoryGrid() {
           <Link
             key={cat.name}
             to={`/catalogo?cat=${encodeURIComponent(cat.name)}`}
-            className="group flex items-start gap-4 rounded-xl border border-line bg-white p-4 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 sm:p-5"
+            className="group flex flex-col items-start gap-3 rounded-xl border border-line bg-white p-4 transition duration-150 hover:border-brand-700 hover:bg-lavender hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 sm:flex-row sm:gap-4 sm:p-5"
           >
             <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lavender text-brand-900 transition duration-150 group-hover:bg-gradient-to-r group-hover:from-brand-700 group-hover:to-brand-500 group-hover:text-white">
               <IconComponent className="h-5 w-5" aria-hidden="true" />
             </div>
-            <div className="min-w-0 flex-1">
-              <h3 className="line-clamp-2 text-sm font-semibold text-brand-900 transition group-hover:text-brand-700 sm:text-base">
+            <div className="w-full min-w-0 sm:w-auto sm:flex-1">
+              <h3 className="hyphens-auto break-words text-sm font-semibold leading-snug text-brand-900 transition group-hover:text-brand-700 sm:text-base">
                 {cat.label}
               </h3>
               <p className="mt-1 font-mono text-xs text-muted">
