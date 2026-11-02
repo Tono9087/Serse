@@ -20,7 +20,7 @@ export function Footer() {
           <div>
             <LogoLockup />
             <p className="mt-3 max-w-sm text-sm text-white/85 leading-relaxed">
-              {SITE.tagline}
+              {t("heroTagline")}
             </p>
           </div>
 

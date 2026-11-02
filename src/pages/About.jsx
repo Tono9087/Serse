@@ -18,11 +18,11 @@ const PILLAR_ICONS = {
 };
 
 export function About() {
-  const { language, t } = useI18n();
+  const { lang, t } = useI18n();
 
   // Resolve bilingual content with fallback to Spanish
   const content = useMemo(() => {
-    const isEn = language === "en";
+    const isEn = lang === "en";
     const intro =
       isEn && ABOUT.intro.en && ABOUT.intro.en.length > 0
         ? ABOUT.intro.en
@@ -39,7 +39,7 @@ export function About() {
     });
 
     return { intro, pillars };
-  }, [language]);
+  }, [lang]);
 
   usePageMeta({
     title: t("metaAboutTitle"),

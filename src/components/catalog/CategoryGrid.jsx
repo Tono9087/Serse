@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import catalog from "../../data/catalog.json";
 import { useI18n } from "../../i18n/I18nContext.jsx";
+import { getCategoryLabel } from "../../lib/categories.js";
 
 const CATEGORY_ICON_MAP = {
   Herramienta: Wrench,
@@ -28,9 +29,10 @@ const CATEGORY_ICON_MAP = {
 /**
  * Category tiles grid
  * Reusable across Home and About pages. Computes counts from catalog data.
+ * The category name stays the identifier (URL/filter); only the label is translated.
  */
 export function CategoryGrid() {
-  const { t } = useI18n();
+  const { lang, t } = useI18n();
 
   const categories = useMemo(() => {
     const counts = new Map();
@@ -39,9 +41,13 @@ export function CategoryGrid() {
       counts.set(item.category, (counts.get(item.category) || 0) + 1);
     }
     return Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => a.name.localeCompare(b.name, "es"));
-  }, []);
+      .map(([name, count]) => ({
+        name,
+        count,
+        label: getCategoryLabel(name, lang),
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label, lang));
+  }, [lang]);
 
   return (
     <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
@@ -58,7 +64,7 @@ export function CategoryGrid() {
             </div>
             <div className="min-w-0 flex-1">
               <h3 className="line-clamp-2 text-sm font-semibold text-brand-900 transition group-hover:text-brand-700 sm:text-base">
-                {cat.name}
+                {cat.label}
               </h3>
               <p className="mt-1 font-mono text-xs text-muted">
                 {cat.count === 1
