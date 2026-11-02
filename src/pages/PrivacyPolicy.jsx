@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AlertCircle, ArrowLeft, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 import {
   BUSINESS_NAME,
   EMAIL_CONTACT,
@@ -44,23 +44,6 @@ export function PrivacyPolicy() {
             </h1>
             <p className="mt-0.5 text-xs text-muted">
               {t("privacyPageSubtitle")}
-            </p>
-          </div>
-        </div>
-
-        {/* Preliminary version disclaimer */}
-        <div
-          role="note"
-          className="mt-6 flex items-start gap-3 rounded-xl border border-brand-700/30 bg-lavender p-4 text-xs sm:text-sm text-brand-900"
-        >
-          <AlertCircle
-            className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-700"
-            aria-hidden="true"
-          />
-          <div>
-            <p className="font-semibold">{t("privacyPreliminaryHeading")}</p>
-            <p className="mt-1 text-ink/90 leading-relaxed">
-              {t("privacyPreliminaryBody")}
             </p>
           </div>
         </div>

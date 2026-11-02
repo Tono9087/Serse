@@ -184,8 +184,6 @@ export const es = {
   rfqPrivacyConsentPrefix: "Al solicitar tu cotización aceptas nuestro",
   privacyPageTitle: "Aviso de Privacidad",
   privacyPageSubtitle: "Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)",
-  privacyPreliminaryHeading: "Nota aclaratoria — Versión preliminar",
-  privacyPreliminaryBody: "El presente Aviso de Privacidad constituye una versión base preliminar preparada para el lanzamiento técnico del portal y está sujeta a revisión, completado de razón social y domicilio fiscal, y ratificación formal por parte del titular del negocio.",
   metaPrivacyTitle: `Aviso de Privacidad | ${BUSINESS_NAME}`,
   metaPrivacyDesc: `Aviso de privacidad para la solicitud de cotizaciones y contacto comercial en ${BUSINESS_NAME}.`,
   footerCopyright: `© {year} ${BUSINESS_NAME}. Todos los derechos reservados.`,

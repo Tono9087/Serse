@@ -184,8 +184,6 @@ export const en = {
   rfqPrivacyConsentPrefix: "By requesting your quote you accept our",
   privacyPageTitle: "Privacy Notice",
   privacyPageSubtitle: "Pursuant to the Mexican Federal Law on Protection of Personal Data Held by Private Parties (LFPDPPP)",
-  privacyPreliminaryHeading: "Disclaimer — Preliminary version",
-  privacyPreliminaryBody: "This Privacy Notice is a preliminary base version prepared for the technical launch of the portal and is subject to legal review, completion of legal entity name and tax address, and formal ratification by the business owner.",
   metaPrivacyTitle: `Privacy Notice | ${BUSINESS_NAME}`,
   metaPrivacyDesc: `Privacy notice for quotation requests and commercial contact at ${BUSINESS_NAME}.`,
   footerCopyright: `© {year} ${BUSINESS_NAME}. All rights reserved.`,
