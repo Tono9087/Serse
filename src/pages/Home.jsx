@@ -7,7 +7,7 @@ import { useI18n } from "../i18n/I18nContext.jsx";
 import { SearchBox } from "../components/search/SearchBox.jsx";
 import { Container } from "../components/layout/Container.jsx";
 import { ParallaxHero } from "../components/ui/ParallaxHero.jsx";
-import { CategoryGrid } from "../components/catalog/CategoryGrid.jsx";
+import { CategoryShowcase } from "../components/home/CategoryShowcase.jsx";
 import { ClientsSection } from "../components/clients/ClientsSection.jsx";
 
 export function Home() {
@@ -71,30 +71,8 @@ export function Home() {
         </Container>
       </ParallaxHero>
 
-      {/* 2. Categories grid: 2 cols mobile, 4 on lg, keep 4 on 2xl */}
-      <section className="py-12 sm:py-16">
-        <Container>
-          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
-            <div>
-              <h2 className="text-2xl font-semibold text-brand-900">
-                {t("categoriesHeading")}
-              </h2>
-              <p className="mt-1 text-sm text-muted">
-                {t("categoriesSubheading")}
-              </p>
-            </div>
-            <Link
-              to="/catalogo"
-              className="inline-flex items-center gap-1 rounded text-sm font-semibold text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-700"
-            >
-              <span>{t("viewCatalog")}</span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <CategoryGrid />
-        </Container>
-      </section>
+      {/* 1b. Featured categories showcase */}
+      <CategoryShowcase limit={8} />
 
       {/* 3. Clients strip */}
       <ClientsSection />
